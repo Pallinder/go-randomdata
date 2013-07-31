@@ -36,7 +36,27 @@ var lastNames = []string{
 
 var domains = []string{"test.com"}
 
-var paragraphs = []string{}
+// Taken from:
+// http://www.feedbooks.com/book/15/heart-of-darkness
+// http://www.feedbooks.com/book/3469/tales-of-space-and-time
+// http://www.feedbooks.com/book/180/the-brothers-karamazov
+// http://www.feedbooks.com/book/35/the-war-of-the-worlds
+var paragraphs = []string{
+	"The Nellie, a cruising yawl, swung to her anchor without a flutter of the sails, and was at rest.",
+	"The sun set; the dusk fell on the stream, and lights began to appear along the shore. The Chapman light–house," +
+		"a three–legged thing erect on a mud–flat, shone strongly.",
+	"He spoke of the happiness that was now certainly theirs, of the folly of not breaking sooner out of that magnificent" +
+		"prison of latter-day life, of the old romantic days that had passed from the world for ever.",
+	"One dog rolled before him, well-nigh slashed in half; but a second had him by the thigh, a third gripped his collar be- hind," +
+		"and a fourth had the blade of the sword between its teeth, tasting its own blood.",
+	"She stared at him in astonishment, and as she read something of the significant hieroglyphic of his battered face, her lips whitened.",
+	"He completely abandoned the child of his marriage with Adelaida Ivanovna, not from malice, nor because of his matrimoni- al grievances," +
+		"but simply because he forgot him.",
+	"It was at this time that the meeting, or, rather gathering of the mem- bers of this inharmonious family took place in the cell of the elder" +
+		"who had such an extraordinary influence on Alyosha.",
+	"The secular cooling that must someday overtake our planet has already gone far indeed with our neighbour.",
+	"Near it in the field, I remember, were three faint points of light, three telescopic stars infinitely remote," +
+		"and all around it was the unfathomable darkness of empty space."}
 
 // Fetched from the world bank at http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS
 var countries = []string{"Afghanistan", "Albania", "Algeria", "American Samoa",
@@ -118,7 +138,7 @@ func randomFrom(source []string) string {
 	return source[rand.Intn(len(source))]
 }
 
-// Returns a random first name
+// Returns a random first name, gender decides the gender of the name
 func FirstName(gender int) string {
 	var name = ""
 	switch gender {
@@ -136,22 +156,22 @@ func FirstName(gender int) string {
 	return name
 }
 
-// returns a random last name
+// Returns a random last name
 func LastName() string {
 	return randomFrom(lastNames)
 }
 
-// returns a combinaton of FirstName LastName randomized
+// Returns a combinaton of FirstName LastName randomized, gender decides the gender of the name
 func FullName(gender int) string {
 	return FirstName(gender) + " " + LastName()
 }
 
-// returns a random email
+// Returns a random email
 func Email() string {
 	return strings.ToLower(FirstName(RandomGender)+LastName()) + "@" + randomFrom(domains)
 }
 
-// returns a random country
+// Returns a random country, countryStyle decides what kind of format the returned country will have
 func Country(countryStyle int64) string {
 	country := ""
 	switch countryStyle {
@@ -173,16 +193,22 @@ func Country(countryStyle int64) string {
 	return country
 }
 
-// returns a random city
+// Returns a random city
 func City() string {
 	return randomFrom(cities)
 }
 
+// Returns a random american state
 func State() string {
 	return randomFrom(states)
 }
 
-// returns a random number, if only one integer is supplied it is treated as the max value to return
+// Returns a random paragraph
+func Paragraph() string {
+	return randomFrom(paragraphs)
+}
+
+// Returns a random number, if only one integer is supplied it is treated as the max value to return
 // if a second argument is supplied it returns a number between (and including) the two numbers
 func Number(numberRange ...int) int {
 	nr := 0

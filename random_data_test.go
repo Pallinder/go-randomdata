@@ -127,6 +127,16 @@ func TestCity(t *testing.T) {
 	}
 }
 
+func TestParagraph(t *testing.T) {
+	t.Parallel()
+	t.Log("TestParagraph")
+	paragraph := Paragraph()
+
+	if !findInSlice(paragraphs, paragraph) {
+		t.Error("Couldnt find paragraph in paragraphs")
+	}
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {
