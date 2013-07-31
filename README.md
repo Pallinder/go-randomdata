@@ -11,6 +11,7 @@ randomdata is a tiny help suite for generating random data such as
 * American state names
 * random numbers (in an interval)
 * random paragraphs 
+* Postal- or zip-codes formatted for a range of different countries.
 
 ### Installation
 ```go get github.com/Pallinder/go-random-data```
