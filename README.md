@@ -41,6 +41,9 @@ func main() {
 	// Print a name with random gender
 	fmt.Println(randomdata.FullName(randomdata.RandomGender))
 
+	// Print an email
+	fmt.Println(randomdata.Email())
+
 	// Print a country with full text representation
 	fmt.Println(randomdata.Country(randomdata.FullCountry))
 

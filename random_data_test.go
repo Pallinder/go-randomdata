@@ -83,6 +83,13 @@ func TestFullName(t *testing.T) {
 }
 
 func TestEmail(t *testing.T) {
+	t.Parallel()
+	t.Log("TestEmail")
+	email := Email()
+
+	if email == "" {
+		t.Error("Failed to generate email with content")
+	}
 
 }
 
