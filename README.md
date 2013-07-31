@@ -10,6 +10,7 @@ randomdata is a tiny help suite for generating random data such as
 * city names
 * American state names
 * random numbers (in an interval)
+* random paragraphs 
 
 ### Installation
 ```go get github.com/Pallinder/go-random-data```
@@ -70,6 +71,9 @@ func main() {
 
 	// Print a number >= 0 and <= 20
 	fmt.Println(randomdata.Number(20))
+	
+	// Print a paragraph
+	fmt.Println(randomdata.Paragraph())
 }
 
 ```

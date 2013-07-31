@@ -25,6 +25,9 @@ func ExampleRandomdata() {
 	// Print a name with random gender
 	fmt.Println(randomdata.FullName(randomdata.RandomGender))
 
+	// Print a random email
+	fmt.Println(randomdata.Email())
+
 	// Print a country with full text representation
 	fmt.Println(randomdata.Country(randomdata.FullCountry))
 
@@ -46,6 +49,6 @@ func ExampleRandomdata() {
 	// Print a number >= 0 and <= 20
 	fmt.Println(randomdata.Number(20))
 
-	fmt.Println(randomdata.Email())
-
+	// Print a paragraph
+	fmt.Println(randomdata.Paragraph())
 }
