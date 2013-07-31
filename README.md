@@ -5,12 +5,17 @@ randomdata is a tiny help suite for generating random data such as
 * first names (male or female)
 * last names
 * full names (male or female) 
-* country names (full name or 3 character names)
+* country names (full name or iso 3166.1 alpha-2 or alpha-3)
+* random email address
 * city names
+* American state names
 * random numbers (in an interval)
- 
+
 ### Installation
 ```go get github.com/Pallinder/go-random-data```
+
+### Documentation
+http://godoc.org/github.com/Pallinder/go-randomdata
 
 ### Usage
 ```go
