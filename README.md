@@ -25,7 +25,7 @@ package main
 
 import (
 	"fmt"
-	"go-randomdata"
+	"github.com/Pallinder/go-randomdata"
 )
 
 func main() {
