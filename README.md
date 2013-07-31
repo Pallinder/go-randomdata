@@ -14,11 +14,12 @@ randomdata is a tiny help suite for generating random data such as
 
 ### Usage
 ```go
+
 package main
 
 import (
 	"fmt"
-	"github.com/Pallinder/go-randomdata"
+	"go-randomdata"
 )
 
 func main() {
@@ -47,11 +48,17 @@ func main() {
 	// Print a country with full text representation
 	fmt.Println(randomdata.Country(randomdata.FullCountry))
 
+	// Print a country using ISO 3166-1 alpha-2
+	fmt.Println(randomdata.Country(randomdata.TwoCharCountry))
+
 	// Print a country using ISO 3166-1 alpha-3
 	fmt.Println(randomdata.Country(randomdata.ThreeCharCountry))
 
 	// Print the name of a random city
 	fmt.Println(randomdata.City())
+
+	// Print the name of a random american state
+	fmt.Println(randomdata.State())
 
 	// Print a random number >= 10 and <= 20
 	fmt.Println(randomdata.Number(10, 20))
@@ -60,10 +67,7 @@ func main() {
 	fmt.Println(randomdata.Number(20))
 }
 
-
 ```
 
 ### Todo
-* add abilty to generate american state names
 * add ability to generate complete addresses
-* add ability to generate two character country names
