@@ -97,6 +97,7 @@ func TestCountry(t *testing.T) {
 	t.Parallel()
 	t.Log("TestCountry")
 	countryFull := Country(FullCountry)
+	countryTwo := Country(TwoCharCountry)
 	countryThree := Country(ThreeCharCountry)
 
 	if len(countryThree) < 3 {
@@ -105,6 +106,14 @@ func TestCountry(t *testing.T) {
 
 	if !findInSlice(countries, countryFull) {
 		t.Error("Couldnt find country in countries")
+	}
+
+	if !findInSlice(countriesTwoChars, countryTwo) {
+		t.Error("Couldnt find country with two chars in countriesTwoChars")
+	}
+
+	if !findInSlice(countriesThreeChars, countryThree) {
+		t.Error("Couldnt find country with three chars in countriesThreeChars")
 	}
 }
 

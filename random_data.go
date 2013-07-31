@@ -161,6 +161,7 @@ func Country(countryStyle int64) string {
 	case FullCountry:
 		country = randomFrom(countries)
 		break
+
 	case TwoCharCountry:
 		country = randomFrom(countriesTwoChars)
 		break
