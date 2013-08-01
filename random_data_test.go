@@ -137,6 +137,15 @@ func TestParagraph(t *testing.T) {
 	}
 }
 
+func TestBool(t *testing.T) {
+	t.Parallel()
+	t.Log("TestBool")
+	booleanVal := Boolean()
+	if booleanVal != true && booleanVal != false {
+		t.Error("Bool was wrong format")
+	}
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {

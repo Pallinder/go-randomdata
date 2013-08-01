@@ -71,6 +71,9 @@ func main() {
 
 	// Print a number >= 0 and <= 20
 	fmt.Println(randomdata.Number(20))
+
+	// Print a bool
+	fmt.Println(randomdata.Boolean())
 	
 	// Print a paragraph
 	fmt.Println(randomdata.Paragraph())

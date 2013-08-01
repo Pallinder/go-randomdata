@@ -51,4 +51,7 @@ func ExampleRandomdata() {
 
 	// Print a paragraph
 	fmt.Println(randomdata.Paragraph())
+
+	// Print a random bool
+	fmt.Println(randomdata.Boolean())
 }

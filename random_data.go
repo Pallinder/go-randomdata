@@ -34,7 +34,7 @@ var lastNames = []string{
 	"Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White",
 	"Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson"}
 
-var domains = []string{"test.com"}
+var domains = []string{"test.com", "example.com"}
 
 // Taken from:
 // http://www.feedbooks.com/book/15/heart-of-darkness
@@ -132,10 +132,14 @@ var states = []string{"Alabama", "Alaska", "Arizona", "Arkansas", "California", 
 	"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
 	"Washington", "West Virginia", "Wisconsin", "Wyoming"}
 
+func seedAndReturnRandom(n int) int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(n)
+}
+
 // Returns a random part of a slice
 func randomFrom(source []string) string {
-	rand.Seed(time.Now().UnixNano())
-	return source[rand.Intn(len(source))]
+	return source[seedAndReturnRandom(len(source))]
 }
 
 // Returns a random first name, gender decides the gender of the name
@@ -215,9 +219,14 @@ func Number(numberRange ...int) int {
 	rand.Seed(time.Now().UnixNano())
 	if len(numberRange) > 1 {
 		nr = 1
-		nr = rand.Intn(numberRange[1]-numberRange[0]) + numberRange[0]
+		nr = seedAndReturnRandom(numberRange[1]-numberRange[0]) + numberRange[0]
 	} else {
-		nr = rand.Intn(numberRange[0])
+		nr = seedAndReturnRandom(numberRange[0])
 	}
 	return nr
+}
+
+func Boolean() bool {
+	nr := seedAndReturnRandom(2)
+	return nr != 0
 }
