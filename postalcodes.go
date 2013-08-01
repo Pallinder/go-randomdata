@@ -8,109 +8,209 @@ import (
 	"strings"
 )
 
+// Supported formats obtained from:
+// * http://www.geopostcodes.com/GeoPC_Postal_codes_formats
+
 // PostalCode yields a random postal/zip code for the given 2-letter country code.
-// Supported formats obtained from: http://www.geopostcodes.com/GeoPC_Postal_codes_formats
+//
+// These codes are not guaranteed to refer to actually locations.
+// They merely follow the correct format as far as letters and digits goes.
+// Where possible, the function enforces valid ranges of letters and digits.
 func PostalCode(countrycode string) string {
 	switch strings.ToUpper(countrycode) {
-	case "PE":
-		return RandomDigits(2)
+	case "LS", "MG", "IS", "OM", "PG":
+		return Digits(3)
 
-	case "FO", "IS", "LS", "MG", "OM", "PG":
-		return RandomDigits(3)
+	case "AM", "GE", "NZ", "NE", "NO", "PY", "ZA", "MZ", "SJ", "LI", "AL",
+		"BD", "CV", "GL":
+		return Digits(4)
 
-	case "AF", "AL", "AM", "AU", "AT", "BD", "BE", "BG", "CV", "CY", "DK", "SV",
-		"ET", "GE", "GL", "GW", "HT", "HU", "LB", "LR", "LI", "LU", "MK", "MD",
-		"NZ", "NE", "NO", "PY", "PH", "ZA", "SJ", "CH", "TN", "VE":
-		return RandomDigits(4)
+	case "DZ", "BA", "KH", "DO", "EG", "EE", "GP", "GT", "ID", "IL", "JO",
+		"KW", "MQ", "MX", "LK", "SD", "TR", "UA", "US", "CR", "IQ", "KV", "MY",
+		"MN", "ME", "PK", "SM", "MA", "UY", "EH", "ZM":
+		return Digits(5)
 
-	case "DZ", "BA", "KH", "CO", "CR", "HR", "CU", "DO", "EG", "EE", "FI",
-		"FR", "GF", "PF", "DE", "GR", "GP", "GT", "HN", "ID", "IR", "IQ", "IL", "IT", "JO",
-		"KE", "KV", "KW", "LA", "LY", "MY", "MH", "MQ", "YT", "MX", "FM", "MC", "MN", "ME",
-		"MA", "MZ", "MM", "NP", "NC", "PK", "PW", "PR", "RE", "BL", "MF", "PM", "WS", "SM",
-		"SA", "RS", "ES", "LK", "SD", "TH", "TR", "UA", "US", "UY", "VA", "WF", "EH", "ZM":
-		return RandomDigits(5)
-
-	case "BY", "CN", "EC", "IN", "KZ", "KG", "NG", "RO", "RU", "SG", "TJ", "TM", "UZ", "VN":
-		return RandomDigits(6)
+	case "BY", "CN", "IN", "KZ", "KG", "NG", "RO", "RU", "SG", "TJ", "TM", "UZ", "VN":
+		return Digits(6)
 
 	case "CL":
-		return RandomDigits(7)
+		return Digits(7)
+
+	case "IR":
+		return Digits(10)
+
+	case "FO":
+		return "FO " + Digits(3)
+
+	case "AF":
+		return BoundedDigits(2, 10, 43) + BoundedDigits(2, 1, 99)
+
+	case "AU", "AT", "BE", "BG", "CY", "DK", "ET", "GW", "HU", "LR", "MK", "PH",
+		"CH", "TN", "VE":
+		return BoundedDigits(4, 1000, 9999)
+
+	case "SV":
+		return "CP " + BoundedDigits(4, 1000, 9999)
+
+	case "HT":
+		return "HT" + Digits(4)
+
+	case "LB":
+		return Digits(4) + " " + Digits(4)
+
+	case "LU":
+		return BoundedDigits(4, 6600, 6999)
+
+	case "MD":
+		return "MD-" + BoundedDigits(4, 1000, 9999)
+
+	case "HR":
+		return "HR-" + Digits(5)
+
+	case "CU":
+		return "CP " + BoundedDigits(5, 10000, 99999)
+
+	case "FI":
+		// Last digit is usually 0 but can, in some cases, be 1 or 5.
+		switch rand.Intn(2) {
+		case 0:
+			return Digits(4) + "0"
+		case 1:
+			return Digits(4) + "1"
+		}
+
+		return Digits(4) + "5"
+
+	case "FR", "GF", "PF", "YT", "MC", "RE", "BL", "MF", "PM", "RS", "TH":
+		return BoundedDigits(5, 10000, 99999)
+
+	case "DE":
+		return BoundedDigits(5, 1000, 99999)
+
+	case "GR":
+		return BoundedDigits(3, 100, 999) + " " + Digits(2)
+
+	case "HN":
+		return "CM" + Digits(4)
+
+	case "IT", "VA":
+		return BoundedDigits(5, 10, 99999)
+
+	case "KE":
+		return BoundedDigits(5, 100, 99999)
+
+	case "LA":
+		return BoundedDigits(5, 1000, 99999)
+
+	case "MH":
+		return BoundedDigits(5, 96960, 96970)
+
+	case "FM":
+		return "FM" + BoundedDigits(5, 96941, 96944)
+
+	case "MM":
+		return BoundedDigits(2, 1, 14) + Digits(3)
+
+	case "NP":
+		return BoundedDigits(5, 10700, 56311)
+
+	case "NC":
+		return "98" + Digits(3)
+
+	case "PW":
+		return "PW96940"
+
+	case "PR":
+		return "PR " + Digits(5)
+
+	case "SA":
+		return BoundedDigits(5, 10000, 99999) + "-" + BoundedDigits(4, 1000, 9999)
+
+	case "ES":
+		return BoundedDigits(2, 1, 52) + BoundedDigits(3, 100, 999)
+
+	case "WF":
+		return "986" + Digits(2)
 
 	case "SZ":
-		return RandomLetters(1) + RandomDigits(3)
+		return Letters(1) + Digits(3)
 
 	case "BM":
-		return RandomLetters(2) + RandomDigits(2)
+		return Letters(2) + Digits(2)
 
 	case "AD":
-		return RandomLetters(2) + RandomDigits(3)
+		return Letters(2) + Digits(3)
 
-	case "BN", "AZ", "VG":
-		return RandomLetters(2) + RandomDigits(4)
+	case "BN", "AZ", "VG", "PE":
+		return Letters(2) + Digits(4)
 
 	case "BB":
-		return RandomLetters(2) + RandomDigits(5)
+		return Letters(2) + Digits(5)
+
+	case "EC":
+		return Letters(2) + Digits(6)
 
 	case "MT":
-		return RandomLetters(3) + RandomDigits(4)
+		return Letters(3) + Digits(4)
 
 	case "JM":
-		return "JM" + RandomLetters(3) + RandomDigits(2)
+		return "JM" + Letters(3) + Digits(2)
 
 	case "AR":
-		return RandomLetters(1) + RandomDigits(4) + RandomLetters(3)
+		return Letters(1) + Digits(4) + Letters(3)
 
 	case "CA":
-		return RandomLetters(1) + RandomDigits(1) + RandomLetters(1) + RandomDigits(1) + RandomLetters(1) + RandomDigits(1)
+		return Letters(1) + Digits(1) + Letters(1) + Digits(1) + Letters(1) + Digits(1)
 
 	case "FK", "TC":
-		return RandomLetters(4) + RandomDigits(1) + RandomLetters(2)
+		return Letters(4) + Digits(1) + Letters(2)
 
 	case "GG", "IM", "JE", "GB":
-		return RandomLetters(2) + RandomDigits(2) + RandomLetters(2)
-
-	case "NL":
-		return RandomDigits(4) + RandomLetters(2)
-
-	case "BR":
-		return RandomDigits(5) + "-" + RandomDigits(3)
+		return Letters(2) + Digits(2) + Letters(2)
 
 	case "KY":
-		return RandomLetters(2) + RandomDigits(1) + "-" + RandomDigits(4)
+		return Letters(2) + Digits(1) + "-" + Digits(4)
 
 	case "JP":
-		return RandomDigits(3) + "-" + RandomDigits(4)
+		return Digits(3) + "-" + Digits(4)
 
 	case "LV", "SI":
-		return RandomLetters(2) + "-" + RandomDigits(4)
+		return Letters(2) + "-" + Digits(4)
 
 	case "LT":
-		return RandomLetters(2) + "-" + RandomDigits(5)
+		return Letters(2) + "-" + Digits(5)
 
 	case "SE":
-		return "SE" + "-" + RandomLetters(3) + " " + RandomDigits(2)
+		return "SE-" + Letters(3) + " " + Digits(2)
+		//return Letters(3) + " " + Digits(2)
 
 	case "MV":
-		return RandomDigits(2) + "-" + RandomDigits(2)
-
-	case "NI":
-		return RandomDigits(3) + "-" + RandomDigits(3) + "-" + RandomDigits(1)
+		return Digits(2) + "-" + Digits(2)
 
 	case "PL":
-		return RandomDigits(2) + "-" + RandomDigits(3)
+		return Digits(2) + "-" + Digits(3)
 
-	case "PT":
-		return RandomDigits(4) + "-" + RandomDigits(3)
+	case "NI":
+		return Digits(3) + "-" + Digits(3) + "-" + Digits(1)
 
 	case "KR":
-		return RandomDigits(3) + "-" + RandomDigits(3)
+		return Digits(3) + "-" + Digits(3)
+
+	case "PT":
+		return Digits(4) + "-" + Digits(3)
+
+	case "NL":
+		return Digits(4) + Letters(2)
+
+	case "BR":
+		return Digits(5) + "-" + Digits(3)
 	}
 
 	return ""
 }
 
-// RandomLetters generates a string of N random leters (A-Z).
-func RandomLetters(letters int) string {
+// Letters generates a string of N random leters (A-Z).
+func Letters(letters int) string {
 	list := make([]byte, letters)
 
 	for i := range list {
@@ -120,10 +220,23 @@ func RandomLetters(letters int) string {
 	return string(list)
 }
 
-// RandomDigits generates a string of N random digits, padded with zeros if necessary.
-func RandomDigits(digits int) string {
+// Digits generates a string of N random digits, padded with zeros if necessary.
+func Digits(digits int) string {
 	max := int(math.Pow10(digits)) - 1
 	num := rand.Intn(max)
+	format := fmt.Sprintf("%%0%dd", digits)
+	return fmt.Sprintf(format, num)
+}
+
+// BoundedDigits generates a string of N random digits, padded with zeros if necessary.
+// The output is restricted to the given range.
+func BoundedDigits(digits, low, high int) string {
+	if low > high {
+		low, high = high, low
+	}
+
+	max := (int(math.Pow10(digits)) - 1) & high
+	num := rand.Intn(max-low) + low
 	format := fmt.Sprintf("%%0%dd", digits)
 	return fmt.Sprintf(format, num)
 }
