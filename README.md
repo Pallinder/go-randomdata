@@ -86,5 +86,8 @@ func main() {
 
 ```
 
-### Todo
-* add ability to generate complete addresses
+### Contributors
+* https://github.com/jteeuwen
+
+
+
