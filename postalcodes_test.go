@@ -8,14 +8,13 @@ var postalcodeTests = []struct {
 	Country string
 	Size    int
 }{
-	{"PE", 2},
-	{"FO", 3},
+	{"PE", 6},
+	{"FO", 6},
 	{"AF", 4},
 	{"DZ", 5},
 	{"BY", 6},
 	{"CL", 7},
 	{"SZ", 4},
-	{"FO", 3},
 	{"BM", 4},
 	{"AD", 5},
 	{"BN", 6},
