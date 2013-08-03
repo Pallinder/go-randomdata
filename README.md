@@ -1,4 +1,4 @@
-go-random-data
+go-randomdata
 ==============
 
 randomdata is a tiny help suite for generating random data such as 
