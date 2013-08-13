@@ -1,4 +1,4 @@
-go-random-data
+go-randomdata
 ==============
 
 randomdata is a tiny help suite for generating random data such as 
@@ -15,7 +15,7 @@ randomdata is a tiny help suite for generating random data such as
 * postal- or zip-codes formatted for a range of different countries.
 
 ### Installation
-```go get github.com/Pallinder/go-random-data```
+```go get github.com/Pallinder/go-randomdata```
 
 ### Documentation
 http://godoc.org/github.com/Pallinder/go-randomdata
