@@ -2,6 +2,7 @@
 package randomdata
 
 import (
+	"fmt"
 	"math/rand"
 	"strings"
 	"time"
@@ -11,6 +12,11 @@ const (
 	Male         int = 0
 	Female       int = 1
 	RandomGender int = 2
+)
+
+const (
+	Small int = 0
+	Large int = 1
 )
 
 const (
@@ -35,6 +41,11 @@ var lastNames = []string{
 	"Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson"}
 
 var domains = []string{"test.com", "example.com"}
+
+// Taken from https://github.com/tomharris/random_data/blob/master/lib/random_data/locations.rb
+var people = []string{"Adams", "Franklin", "Jackson", "Jefferson", "Lincoln", "Madison", "Washington", "Wilson"}
+
+var streetTypes = []string{"St", "Ave", "Rd", "Blvd", "Trl", "Ter", "Rdg", "Pl", "Pkwy", "Ct", "Circle"}
 
 // Taken from:
 // http://www.feedbooks.com/book/15/heart-of-darkness
@@ -132,6 +143,10 @@ var states = []string{"Alabama", "Alaska", "Arizona", "Arkansas", "California", 
 	"Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
 	"Washington", "West Virginia", "Wisconsin", "Wyoming"}
 
+var statesSmall = []string{"AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS",
+	"KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW",
+	"PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "VI", "WA", "DC", "WV", "WI", "WY"}
+
 func seedAndReturnRandom(n int) int {
 	rand.Seed(time.Now().UnixNano())
 	return rand.Intn(n)
@@ -203,8 +218,22 @@ func City() string {
 }
 
 // Returns a random american state
-func State() string {
-	return randomFrom(states)
+func State(typeOfState int) string {
+	if typeOfState == Small {
+		return randomFrom(statesSmall)
+	} else {
+		return randomFrom(states)
+	}
+}
+
+// Returns a random fake street name
+func Street() string {
+	return fmt.Sprintf("%s %s", randomFrom(people), randomFrom(streetTypes))
+}
+
+// Returns an american style address
+func Address() string {
+	return fmt.Sprintf("%d %s,\n%s, %s, %s", Number(100), Street(), City(), State(Small), PostalCode("US"))
 }
 
 // Returns a random paragraph

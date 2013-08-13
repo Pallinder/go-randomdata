@@ -54,4 +54,13 @@ func ExampleRandomdata() {
 
 	// Print a random bool
 	fmt.Println(randomdata.Boolean())
+
+	// Print a random postalcode from Sweden
+	fmt.Println(randomdata.PostalCode("SE"))
+
+	// Print a random american sounding street name
+	fmt.Println(randomdata.Street())
+
+	// Print a random american address
+	fmt.Println(randomdata.Address())
 }
