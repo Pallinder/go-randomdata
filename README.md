@@ -8,11 +8,12 @@ randomdata is a tiny help suite for generating random data such as
 * country names (full name or iso 3166.1 alpha-2 or alpha-3)
 * random email address
 * city names
-* American state names
+* American state names (two chars or full)
 * random numbers (in an interval)
 * random paragraphs 
 * random bool values
 * postal- or zip-codes formatted for a range of different countries.
+* american sounding addresses / street names
 
 ### Installation
 ```go get github.com/Pallinder/go-randomdata```
@@ -66,7 +67,16 @@ func main() {
 	fmt.Println(randomdata.City())
 
 	// Print the name of a random american state
-	fmt.Println(randomdata.State())
+	fmt.Println(randomdata.State(randomdata.Large))
+	
+	// Print the name of a random american state using two chars
+	fmt.Println(randomdata.State(randomdata.Small))
+
+	// Print an american sounding street name
+	fmt.Println(randomdata.Street())
+	
+	// Print an american sounding address
+	fmt.Println(randomdata.Address())
 
 	// Print a random number >= 10 and <= 20
 	fmt.Println(randomdata.Number(10, 20))
