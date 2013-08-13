@@ -41,7 +41,10 @@ func ExampleRandomdata() {
 	fmt.Println(randomdata.City())
 
 	// Print the name of a random american state
-	fmt.Println(randomdata.State())
+	fmt.Println(randomdata.State(randomdata.Large))
+
+	// Print the name of a random american state using two letters
+	fmt.Println(randomdata.State(randomdata.Small))
 
 	// Print a random number >= 10 and <= 20
 	fmt.Println(randomdata.Number(10, 20))

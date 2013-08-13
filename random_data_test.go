@@ -146,6 +146,22 @@ func TestBool(t *testing.T) {
 	}
 }
 
+func TestState(t *testing.T) {
+	t.Parallel()
+	t.Log("TestState")
+	stateValSmall := State(Small)
+	stateValLarge := State(Large)
+
+	if !findInSlice(statesSmall, stateValSmall) {
+		t.Error("Couldnt find small state name in states")
+	}
+
+	if !findInSlice(states, stateValLarge) {
+		t.Error("Couldnt find state name in states")
+	}
+
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {
