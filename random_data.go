@@ -224,6 +224,7 @@ func State(typeOfState int) string {
 	} else {
 		return randomFrom(states)
 	}
+	return ""
 }
 
 // Returns a random fake street name
