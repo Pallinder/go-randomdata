@@ -1,5 +1,6 @@
 go-randomdata
 ==============
+[![Build Status](https://travis-ci.org/Pallinder/go-randomdata.png)](https://travis-ci.org/Pallinder/go-randomdata)
 
 randomdata is a tiny help suite for generating random data such as 
 * first names (male or female)
