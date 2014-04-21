@@ -5,6 +5,19 @@ import (
 	"testing"
 )
 
+func TestRandomStringDigits(t *testing.T) {
+	t.Parallel()
+	t.Log("TestRandomStringDigits")
+
+	if len(StringNumber(2, "-")) != 5 {
+		t.Fatal("Wrong length returned")
+	}
+
+	if len(StringNumber(2, "")) != 4 {
+		t.Fatal("Wrong length returned")
+	}
+}
+
 func TestFirstName(t *testing.T) {
 	t.Parallel()
 	t.Log("TestFirstName")

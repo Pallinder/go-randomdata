@@ -1,69 +1,72 @@
-package randomdata_test
+package randomdata
 
 import (
 	"fmt"
-	"github.com/Pallinder/go-randomdata"
 )
 
 func ExampleRandomdata() {
 
 	// Print a male first name
-	fmt.Println(randomdata.FirstName(randomdata.Male))
+	fmt.Println(FirstName(Male))
 
 	// Print a female first name
-	fmt.Println(randomdata.FirstName(randomdata.Female))
+	fmt.Println(FirstName(Female))
 
 	// Print a last name
-	fmt.Println(randomdata.LastName())
+	fmt.Println(LastName())
 
 	// Print a male name
-	fmt.Println(randomdata.FullName(randomdata.Male))
+	fmt.Println(FullName(Male))
 
 	// Print a female name
-	fmt.Println(randomdata.FullName(randomdata.Female))
+	fmt.Println(FullName(Female))
 
 	// Print a name with random gender
-	fmt.Println(randomdata.FullName(randomdata.RandomGender))
+	fmt.Println(FullName(RandomGender))
 
 	// Print a random email
-	fmt.Println(randomdata.Email())
+	fmt.Println(Email())
 
 	// Print a country with full text representation
-	fmt.Println(randomdata.Country(randomdata.FullCountry))
+	fmt.Println(Country(FullCountry))
 
 	// Print a country using ISO 3166-1 alpha-3
-	fmt.Println(randomdata.Country(randomdata.ThreeCharCountry))
+	fmt.Println(Country(ThreeCharCountry))
 
 	// Print a country using ISO 3166-1 alpha-2
-	fmt.Println(randomdata.Country(randomdata.TwoCharCountry))
+	fmt.Println(Country(TwoCharCountry))
 
 	// Print the name of a random city
-	fmt.Println(randomdata.City())
+	fmt.Println(City())
 
 	// Print the name of a random american state
-	fmt.Println(randomdata.State(randomdata.Large))
+	fmt.Println(State(Large))
 
 	// Print the name of a random american state using two letters
-	fmt.Println(randomdata.State(randomdata.Small))
+	fmt.Println(State(Small))
 
 	// Print a random number >= 10 and <= 20
-	fmt.Println(randomdata.Number(10, 20))
+	fmt.Println(Number(10, 20))
 
 	// Print a number >= 0 and <= 20
-	fmt.Println(randomdata.Number(20))
+	fmt.Println(Number(20))
 
 	// Print a paragraph
-	fmt.Println(randomdata.Paragraph())
+	fmt.Println(Paragraph())
 
 	// Print a random bool
-	fmt.Println(randomdata.Boolean())
+	fmt.Println(Boolean())
 
 	// Print a random postalcode from Sweden
-	fmt.Println(randomdata.PostalCode("SE"))
+	fmt.Println(PostalCode("SE"))
 
 	// Print a random american sounding street name
-	fmt.Println(randomdata.Street())
+	fmt.Println(Street())
 
 	// Print a random american address
-	fmt.Println(randomdata.Address())
+	fmt.Println(Address())
+
+	// Print a random string of numbers
+	fmt.Println(StringNumber(2, "-"))
+
 }

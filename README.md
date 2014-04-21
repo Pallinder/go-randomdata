@@ -93,6 +93,9 @@ func main() {
 	
 	// Print a postal code 
 	fmt.Println(randomdata.PostalCode("SE"))
+
+	// Print a set of random numbers as a string
+	fmt.Println(randomdata.StringNumber(2,"-"))
 }
 
 ```
