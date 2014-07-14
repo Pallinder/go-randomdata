@@ -4,7 +4,6 @@ package randomdata
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"math/rand"
 	"strings"
@@ -51,13 +50,8 @@ var jsonData = jsonContent{}
 
 func init() {
 	jsonData = jsonContent{}
-	data, err := ioutil.ReadFile("./jsondata.json")
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = json.Unmarshal(data, &jsonData)
+	err := json.Unmarshal(data, &jsonData)
 
 	if err != nil {
 		log.Fatal(err)

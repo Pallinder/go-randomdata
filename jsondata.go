@@ -1,4 +1,6 @@
-{
+package randomdata
+
+var data = []byte(`{
     "adjectives": [
         "black",
         "white",
@@ -1045,7 +1047,7 @@
         "Congo, Dem. Rep.",
         "Congo, Rep.",
         "Costa Rica",
-        "Côte d'Ivoire",
+        "Côte dIvoire",
         "Croatia",
         "Cuba",
         "Cyprus",
@@ -1811,4 +1813,4 @@
         "WI",
         "WY"
     ]
-}
+}`)
