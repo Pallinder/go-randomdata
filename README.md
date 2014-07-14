@@ -15,6 +15,7 @@ randomdata is a tiny help suite for generating random data such as
 * random bool values
 * postal- or zip-codes formatted for a range of different countries.
 * american sounding addresses / street names
+* silly names - suitable for names of things
 
 ### Installation
 ```go get github.com/Pallinder/go-randomdata```
@@ -33,6 +34,8 @@ import (
 )
 
 func main() {
+	// Print a random silly name
+	fmt.Println(randomdata.SillyName())
 
 	// Print a male first name
 	fmt.Println(randomdata.FirstName(randomdata.Male))
