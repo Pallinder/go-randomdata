@@ -6,7 +6,6 @@ import (
 )
 
 func TestRandomStringDigits(t *testing.T) {
-	t.Parallel()
 	t.Log("TestRandomStringDigits")
 
 	if len(StringNumber(2, "-")) != 5 {
@@ -19,17 +18,16 @@ func TestRandomStringDigits(t *testing.T) {
 }
 
 func TestFirstName(t *testing.T) {
-	t.Parallel()
 	t.Log("TestFirstName")
 	firstNameMale := FirstName(Male)
 	firstNameFemale := FirstName(Female)
 	randomName := FirstName(RandomGender)
 
-	if !findInSlice(firstNamesMale, firstNameMale) {
+	if !findInSlice(jsonData.FirstNamesMale, firstNameMale) {
 		t.Error("firstNameMale empty or not in male names")
 	}
 
-	if !findInSlice(firstNamesFemale, firstNameFemale) {
+	if !findInSlice(jsonData.FirstNamesFemale, firstNameFemale) {
 		t.Error("firstNameFemale empty or not in female names")
 	}
 
@@ -40,17 +38,15 @@ func TestFirstName(t *testing.T) {
 }
 
 func TestLastName(t *testing.T) {
-	t.Parallel()
 	t.Log("TestLastName")
 	lastName := LastName()
 
-	if !findInSlice(lastNames, lastName) {
+	if !findInSlice(jsonData.LastNames, lastName) {
 		t.Error("lastName empty or not in slice")
 	}
 }
 
 func TestFullName(t *testing.T) {
-	t.Parallel()
 	t.Log("TestFullName")
 
 	fullNameMale := FullName(Male)
@@ -65,11 +61,11 @@ func TestFullName(t *testing.T) {
 		t.Error("Failed on full name male")
 	}
 
-	if !findInSlice(firstNamesMale, maleSplit[0]) {
+	if !findInSlice(jsonData.FirstNamesMale, maleSplit[0]) {
 		t.Error("Couldnt find maleSplit first name in firstNamesMale")
 	}
 
-	if !findInSlice(lastNames, maleSplit[1]) {
+	if !findInSlice(jsonData.LastNames, maleSplit[1]) {
 		t.Error("Couldnt find maleSplit last name in lastNames")
 	}
 
@@ -77,11 +73,11 @@ func TestFullName(t *testing.T) {
 		t.Error("Failed on full name female")
 	}
 
-	if !findInSlice(firstNamesFemale, femaleSplit[0]) {
+	if !findInSlice(jsonData.FirstNamesFemale, femaleSplit[0]) {
 		t.Error("Couldnt find femaleSplit first name in firstNamesFemale")
 	}
 
-	if !findInSlice(lastNames, femaleSplit[1]) {
+	if !findInSlice(jsonData.LastNames, femaleSplit[1]) {
 		t.Error("Couldnt find femaleSplit last name in lastNames")
 	}
 
@@ -89,14 +85,13 @@ func TestFullName(t *testing.T) {
 		t.Error("Failed on full name random")
 	}
 
-	if !findInSlice(firstNamesMale, randomSplit[0]) && !findInSlice(firstNamesFemale, randomSplit[0]) {
+	if !findInSlice(jsonData.FirstNamesMale, randomSplit[0]) && !findInSlice(jsonData.FirstNamesFemale, randomSplit[0]) {
 		t.Error("Couldnt find randomSplit first name in either firstNamesMale or firstNamesFemale")
 	}
 
 }
 
 func TestEmail(t *testing.T) {
-	t.Parallel()
 	t.Log("TestEmail")
 	email := Email()
 
@@ -107,7 +102,6 @@ func TestEmail(t *testing.T) {
 }
 
 func TestCountry(t *testing.T) {
-	t.Parallel()
 	t.Log("TestCountry")
 	countryFull := Country(FullCountry)
 	countryTwo := Country(TwoCharCountry)
@@ -117,41 +111,38 @@ func TestCountry(t *testing.T) {
 		t.Error("countryThree < 3 chars")
 	}
 
-	if !findInSlice(countries, countryFull) {
+	if !findInSlice(jsonData.Countries, countryFull) {
 		t.Error("Couldnt find country in countries")
 	}
 
-	if !findInSlice(countriesTwoChars, countryTwo) {
+	if !findInSlice(jsonData.CountriesTwoChars, countryTwo) {
 		t.Error("Couldnt find country with two chars in countriesTwoChars")
 	}
 
-	if !findInSlice(countriesThreeChars, countryThree) {
+	if !findInSlice(jsonData.CountriesThreeChars, countryThree) {
 		t.Error("Couldnt find country with three chars in countriesThreeChars")
 	}
 }
 
 func TestCity(t *testing.T) {
-	t.Parallel()
 	t.Log("TestCity")
 	city := City()
 
-	if !findInSlice(cities, city) {
+	if !findInSlice(jsonData.Cities, city) {
 		t.Error("Couldnt find city in cities")
 	}
 }
 
 func TestParagraph(t *testing.T) {
-	t.Parallel()
 	t.Log("TestParagraph")
 	paragraph := Paragraph()
 
-	if !findInSlice(paragraphs, paragraph) {
+	if !findInSlice(jsonData.Paragraphs, paragraph) {
 		t.Error("Couldnt find paragraph in paragraphs")
 	}
 }
 
 func TestBool(t *testing.T) {
-	t.Parallel()
 	t.Log("TestBool")
 	booleanVal := Boolean()
 	if booleanVal != true && booleanVal != false {
@@ -160,19 +151,50 @@ func TestBool(t *testing.T) {
 }
 
 func TestState(t *testing.T) {
-	t.Parallel()
 	t.Log("TestState")
 	stateValSmall := State(Small)
 	stateValLarge := State(Large)
 
-	if !findInSlice(statesSmall, stateValSmall) {
+	if !findInSlice(jsonData.StatesSmall, stateValSmall) {
 		t.Error("Couldnt find small state name in states")
 	}
 
-	if !findInSlice(states, stateValLarge) {
+	if !findInSlice(jsonData.States, stateValLarge) {
 		t.Error("Couldnt find state name in states")
 	}
 
+}
+
+func TestNoun(t *testing.T) {
+	if len(jsonData.Nouns) == 0 {
+		t.Error("Nouns is empty")
+	}
+
+	noun := Noun()
+
+	if !findInSlice(jsonData.Nouns, noun) {
+		t.Error("Couldnt find noun in json data")
+	}
+}
+
+func TestAdjective(t *testing.T) {
+	if len(jsonData.Adjectives) == 0 {
+		t.Error("Adjectives array is empty")
+	}
+
+	adjective := Adjective()
+
+	if !findInSlice(jsonData.Adjectives, adjective) {
+		t.Error("Couldnt find noun in json data")
+	}
+}
+
+func TestSillyName(t *testing.T) {
+	sillyName := SillyName()
+
+	if len(sillyName) == 0 {
+		t.Error("Couldnt generate a silly name")
+	}
 }
 
 func findInSlice(source []string, toFind string) bool {
