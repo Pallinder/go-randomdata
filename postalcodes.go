@@ -180,7 +180,7 @@ func PostalCode(countrycode string) string {
 	case "LT":
 		return Letters(2) + "-" + Digits(5)
 
-	case "SE":
+	case "SE", "TW":
 		return Digits(5)
 
 	case "MV":
