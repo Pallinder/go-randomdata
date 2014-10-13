@@ -99,6 +99,9 @@ func main() {
 
 	// Print a set of random numbers as a string
 	fmt.Println(randomdata.StringNumber(2,"-"))
+	
+	// Print a valid random IPv4 address
+	fmt.Println(randomdata.IpV4Address())	
 }
 
 ```

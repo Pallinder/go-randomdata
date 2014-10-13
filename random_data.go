@@ -215,6 +215,7 @@ func SillyName() string {
 	return uppercaseFirstLetter(Noun()) + Adjective()
 }
 
+// Returns a valid IPv4 address as string
 func IpV4Address() string {
 	blocks := []string{}
 	for i := 0; i < 4; i++ {

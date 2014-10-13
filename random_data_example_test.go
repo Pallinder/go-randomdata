@@ -69,4 +69,7 @@ func ExampleRandomdata() {
 	// Print a random string of numbers
 	fmt.Println(StringNumber(2, "-"))
 
+	// Print a random IPv4 address
+	fmt.Println(IpV4Address())
+
 }

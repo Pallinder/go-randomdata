@@ -1,6 +1,7 @@
 package randomdata
 
 import (
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -194,6 +195,28 @@ func TestSillyName(t *testing.T) {
 
 	if len(sillyName) == 0 {
 		t.Error("Couldnt generate a silly name")
+	}
+}
+
+func TestIpV4Address(t *testing.T) {
+	ipAddress := IpV4Address()
+
+	ipBlocks := strings.Split(ipAddress, ".")
+
+	if len(ipBlocks) < 0 || len(ipBlocks) > 4 {
+		t.Error("Invalid generated IP address")
+	}
+
+	for _, blockString := range ipBlocks {
+		blockNumber, err := strconv.Atoi(blockString)
+
+		if err != nil {
+			t.Error("Error while testing IpV4Address(): " + err.Error())
+		}
+
+		if blockNumber < 0 || blockNumber > 255 {
+			t.Error("Invalid generated IP address")
+		}
 	}
 }
 
