@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
+	"strconv"
 	"strings"
 	"time"
 	"unicode"
@@ -212,4 +213,14 @@ func lowercaseFirstLetter(word string) string {
 // Returns a silly name, useful for randomizing naming of things
 func SillyName() string {
 	return uppercaseFirstLetter(Noun()) + Adjective()
+}
+
+func IpV4Address() string {
+	blocks := []string{}
+	for i := 0; i < 4; i++ {
+		number := seedAndReturnRandom(255)
+		blocks = append(blocks, strconv.Itoa(number))
+	}
+
+	return strings.Join(blocks, ".")
 }
