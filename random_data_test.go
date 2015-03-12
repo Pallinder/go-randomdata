@@ -220,6 +220,18 @@ func TestIpV4Address(t *testing.T) {
 	}
 }
 
+func TestDecimal(t *testing.T) {
+	d := Decimal(2, 4, 3)
+	if !(d >= 2 && d <= 4) {
+		t.Error("Invalid generate range")
+	}
+
+	ds := strings.Split(strconv.FormatFloat(d, 'f', 3, 64), ".")
+	if len(ds[1]) != 3 {
+		t.Error("Invalid floating point")
+	}
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {
