@@ -64,6 +64,11 @@ func seedAndReturnRandom(n int) int {
 	return rand.Intn(n)
 }
 
+func seedAndReturnRandomFloat() float64 {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Float64()
+}
+
 // Returns a random part of a slice
 func randomFrom(source []string) string {
 	return source[seedAndReturnRandom(len(source))]
@@ -164,6 +169,23 @@ func Number(numberRange ...int) int {
 		nr = seedAndReturnRandom(numberRange[1]-numberRange[0]) + numberRange[0]
 	} else {
 		nr = seedAndReturnRandom(numberRange[0])
+	}
+	return nr
+}
+
+func Decimal(numberRange ...int) float64 {
+	nr := 0.0
+	rand.Seed(time.Now().UnixNano())
+	if len(numberRange) > 1 {
+		nr = 1.0
+		nr = seedAndReturnRandomFloat()*(float64(numberRange[1])-float64(numberRange[0])) + float64(numberRange[0])
+	} else {
+		nr = seedAndReturnRandomFloat() * float64(numberRange[0])
+	}
+
+	if len(numberRange) > 2 {
+		sf := strconv.FormatFloat(nr, 'f', numberRange[2], 64)
+		nr, _ = strconv.ParseFloat(sf, 64)
 	}
 	return nr
 }
