@@ -108,12 +108,12 @@ func main() {
 
 	// Print a set of 2 random numbers as a string
 	fmt.Println(randomdata.StringNumber(2, "-")) 
-    
-    // Print a set of 2 random 3-Digits numbers as a string
+	
+	// Print a set of 2 random 3-Digits numbers as a string
 	fmt.Println(randomdata.StringNumberExt(2, "-", 3)) 
 	
 	// Print a valid random IPv4 address
-	fmt.Println(randomdata.IpV4Address())	
+	fmt.Println(randomdata.IpV4Address())
 }
 
 ```
