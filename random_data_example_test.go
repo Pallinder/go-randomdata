@@ -78,6 +78,9 @@ func ExampleRandomdata() {
 	// Print a random string of numbers
 	fmt.Println(StringNumber(2, "-"))
 
+	// Print a set of 2 random 3-Digits numbers as a string
+	fmt.Println(StringNumberExt(2, "-", 3))
+
 	// Print a random IPv4 address
 	fmt.Println(IpV4Address())
 

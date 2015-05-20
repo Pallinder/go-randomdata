@@ -190,19 +190,25 @@ func Decimal(numberRange ...int) float64 {
 	return nr
 }
 
-// Returns a random number as a string
-func StringNumber(numberPairs int, seperator string) string {
+func StringNumberExt(numberPairs int, separator string, numberOfDigits int) string {
 	numberString := ""
 
 	for i := 0; i < numberPairs; i++ {
-		numberString += fmt.Sprintf("%d%d", Number(0, 9), Number(0, 9))
+		for d := 0; d < numberOfDigits; d++ {
+			numberString += fmt.Sprintf("%d", Number(0, 9))
+		}
 
 		if i+1 != numberPairs {
-			numberString += seperator
+			numberString += separator
 		}
 	}
 
 	return numberString
+}
+
+// Returns a random number as a string
+func StringNumber(numberPairs int, separator string) string {
+	return StringNumberExt(numberPairs, separator, 2)
 }
 
 func Boolean() bool {

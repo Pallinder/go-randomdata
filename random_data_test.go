@@ -16,6 +16,14 @@ func TestRandomStringDigits(t *testing.T) {
 	if len(StringNumber(2, "")) != 4 {
 		t.Fatal("Wrong length returned")
 	}
+
+	if len(StringNumberExt(3, "/", 3)) != 11 {
+		t.Fatal("Wrong length returned")
+	}
+
+	if len(StringNumberExt(3, "", 3)) != 9 {
+		t.Fatal("Wrong length returned")
+	}
 }
 
 func TestFirstName(t *testing.T) {
