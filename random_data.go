@@ -42,6 +42,7 @@ type jsonContent struct {
 	Countries           []string `json:countries`   // Fetched from the world bank at http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS
 	CountriesThreeChars []string `json:countriesThreeChars`
 	CountriesTwoChars   []string `json:countriesTwoChars`
+	Currencies          []string `json:currencies` //https://github.com/OpenBookPrices/country-data
 	Cities              []string `json:cities`
 	States              []string `json:states`
 	StatesSmall         []string `json:statesSmall`
@@ -127,6 +128,11 @@ func Country(countryStyle int64) string {
 		break
 	}
 	return country
+}
+
+// Returns a random currency under ISO 4217 format
+func Currency() string {
+	return randomFrom(jsonData.Currencies)
 }
 
 // Returns a random city
