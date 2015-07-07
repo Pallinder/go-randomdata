@@ -136,7 +136,7 @@ func TestCountry(t *testing.T) {
 func TestCurrency(t *testing.T) {
 	t.Log("TestCurrency")
 	if !findInSlice(jsonData.Currencies, Currency()) {
-		t.Error("Couldnt find currency in urrencies")
+		t.Error("Could not find currency in currencies")
 	}
 }
 
