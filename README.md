@@ -67,6 +67,9 @@ func main() {
 	// Print a country using ISO 3166-1 alpha-3
 	fmt.Println(randomdata.Country(randomdata.ThreeCharCountry))
 
+	// Print a currency using ISO 4217
+	fmt.Println(randomdata.Currency())
+
 	// Print the name of a random city
 	fmt.Println(randomdata.City())
 

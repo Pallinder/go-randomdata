@@ -36,6 +36,9 @@ func ExampleRandomdata() {
 	// Print a country using ISO 3166-1 alpha-2
 	fmt.Println(Country(TwoCharCountry))
 
+	// Print a currency using ISO 4217
+	fmt.Println(Currency())
+
 	// Print the name of a random city
 	fmt.Println(City())
 
