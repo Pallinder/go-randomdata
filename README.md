@@ -92,13 +92,13 @@ func main() {
 	fmt.Println(randomdata.Number(20))
 
 	// Print a random float >= 0 and <= 20 with decimal point 3
-	fmt.Println(Decimal(0, 20, 3))
+	fmt.Println(randomdata.Decimal(0, 20, 3))
 
 	// Print a random float >= 10 and <= 20
-	fmt.Println(Decimal(10, 20))
+	fmt.Println(randomdata.Decimal(10, 20))
 
 	// Print a random float >= 0 and <= 20
-	fmt.Println(Decimal(20))
+	fmt.Println(randomdata.Decimal(20))
 
 	// Print a bool
 	fmt.Println(randomdata.Boolean())
