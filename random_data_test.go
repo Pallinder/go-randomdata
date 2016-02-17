@@ -247,6 +247,15 @@ func TestDecimal(t *testing.T) {
 	}
 }
 
+func TestDay(t *testing.T) {
+	t.Log("TestDay")
+	day := Day()
+
+	if !findInSlice(jsonData.Days, day) {
+		t.Error("Couldnt find day in days")
+	}
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {

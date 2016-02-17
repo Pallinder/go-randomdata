@@ -117,6 +117,9 @@ func main() {
 	
 	// Print a valid random IPv4 address
 	fmt.Println(randomdata.IpV4Address())
+
+	// Print a day
+	fmt.Println(randomdata.Day())
 }
 
 ```

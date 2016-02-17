@@ -1982,5 +1982,14 @@ var data = []byte(`{
         "WV",
         "WI",
         "WY"
+    ],
+    "days" : [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
     ]
 }`)
