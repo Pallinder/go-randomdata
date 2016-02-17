@@ -87,4 +87,7 @@ func ExampleRandomdata() {
 	// Print a random IPv4 address
 	fmt.Println(IpV4Address())
 
+	// Print a random day
+	fmt.Println(Day())
+
 }
