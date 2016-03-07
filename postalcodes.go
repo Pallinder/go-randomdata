@@ -234,8 +234,12 @@ func BoundedDigits(digits, low, high int) string {
 		low, high = high, low
 	}
 
-	max := (int(math.Pow10(digits)) - 1) & high
-	num := rand.Intn(max-low) + low
+	max := int(math.Pow10(digits)) - 1
+	if high > max {
+		high = max
+	}
+
+	num := rand.Intn(high-low) + low
 	format := fmt.Sprintf("%%0%dd", digits)
 	return fmt.Sprintf(format, num)
 }
