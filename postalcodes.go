@@ -239,7 +239,7 @@ func BoundedDigits(digits, low, high int) string {
 		high = max
 	}
 
-	num := rand.Intn(high-low) + low
+	num := rand.Intn(high-low+1) + low
 	format := fmt.Sprintf("%%0%dd", digits)
 	return fmt.Sprintf(format, num)
 }
