@@ -47,6 +47,7 @@ type jsonContent struct {
 	States              []string `json:states`
 	StatesSmall         []string `json:statesSmall`
 	Days                []string `json:days`
+	Months              []string `json:months`
 }
 
 var jsonData = jsonContent{}
@@ -264,4 +265,9 @@ func IpV4Address() string {
 // Returns randome day
 func Day() string {
 	return randomFrom(jsonData.Days)
+}
+
+// Returns randome month
+func Month() string {
+	return randomFrom(jsonData.Months)
 }

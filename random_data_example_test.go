@@ -2,6 +2,7 @@ package randomdata
 
 import (
 	"fmt"
+	"time"
 )
 
 func ExampleRandomdata() {
@@ -89,5 +90,15 @@ func ExampleRandomdata() {
 
 	// Print a random day
 	fmt.Println(Day())
+
+	// Print a month
+	fmt.Println(Month())
+
+	// Print randome date
+	timestamp := time.Now()
+	day := Day()
+	month := Month()
+	year := timestamp.Year()
+	fmt.Println(day, Number(1, 30), month[0:3], year)
 
 }

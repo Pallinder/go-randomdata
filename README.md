@@ -30,6 +30,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 	"github.com/Pallinder/go-randomdata"
 )
 
@@ -120,6 +121,17 @@ func main() {
 
 	// Print a day
 	fmt.Println(randomdata.Day())
+  
+	// Print a month
+	fmt.Println(randomdata.Month())
+  
+	// Print date like Thursday 22 Aug 2016
+	timestamp := time.Now()
+	day := randomdata.Day()
+	month := randomdata.Month()
+	year := timestamp.Year()
+	fmt.Println(day, randomdata.Number(1, 30), month[0:3], year)
+
 }
 
 ```
