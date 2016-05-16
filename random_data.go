@@ -262,12 +262,23 @@ func IpV4Address() string {
 	return strings.Join(blocks, ".")
 }
 
-// Returns randome day
+// Returns random day
 func Day() string {
 	return randomFrom(jsonData.Days)
 }
 
-// Returns randome month
+// Returns random month
 func Month() string {
 	return randomFrom(jsonData.Months)
+}
+
+// Returns full date
+func FullDate() string {
+	timestamp := time.Now()
+	day := Day()
+	month := Month()
+	year := timestamp.Year()
+	fullDate := day + " " + strconv.Itoa(Number(1, 30)) + " " + month[0:3] + " " + strconv.Itoa(year)
+	return fullDate
+
 }
