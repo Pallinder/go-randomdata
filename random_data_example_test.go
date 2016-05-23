@@ -1,8 +1,6 @@
 package randomdata
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func ExampleRandomdata() {
 
@@ -89,5 +87,11 @@ func ExampleRandomdata() {
 
 	// Print a random day
 	fmt.Println(Day())
+
+	// Print a month
+	fmt.Println(Month())
+
+	// Print full date
+	fmt.Println(FullDate())
 
 }

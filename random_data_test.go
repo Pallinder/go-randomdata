@@ -256,6 +256,25 @@ func TestDay(t *testing.T) {
 	}
 }
 
+func TestMonth(t *testing.T) {
+	t.Log("TestMonth")
+	month := Month()
+
+	if !findInSlice(jsonData.Months, month) {
+		t.Error("Couldnt find month in months")
+	}
+}
+
+func TestFullDate(t *testing.T) {
+	t.Log("TestFullDate")
+	fulldateOne := FullDate()
+	fulldateTwo := FullDate()
+
+	if fulldateOne == fulldateTwo {
+		t.Error("Invalid random full date")
+	}
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {

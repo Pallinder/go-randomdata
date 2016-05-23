@@ -16,6 +16,9 @@ randomdata is a tiny help suite for generating random data such as
 * postal- or zip-codes formatted for a range of different countries.
 * american sounding addresses / street names
 * silly names - suitable for names of things
+* random days
+* random months
+* random full date
 
 ### Installation
 ```go get github.com/Pallinder/go-randomdata```
@@ -30,6 +33,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 	"github.com/Pallinder/go-randomdata"
 )
 
@@ -120,6 +124,13 @@ func main() {
 
 	// Print a day
 	fmt.Println(randomdata.Day())
+  
+	// Print a month
+	fmt.Println(randomdata.Month())
+  
+	// Print full date like Thursday 22 Aug 2016
+	fmt.Println(randomdata.FullDate())
+
 }
 
 ```
