@@ -1,6 +1,8 @@
 package randomdata
 
 import (
+	"bytes"
+	"net"
 	"strconv"
 	"strings"
 	"testing"
@@ -232,6 +234,18 @@ func TestIpV4Address(t *testing.T) {
 		if blockNumber < 0 || blockNumber > 255 {
 			t.Error("Invalid generated IP address")
 		}
+	}
+}
+
+func TestIpV6Address(t *testing.T) {
+	ipAddress := net.ParseIP(IpV6Address())
+
+	if len(ipAddress) != net.IPv6len {
+		t.Errorf("Invalid generated IPv6 address %v", ipAddress)
+	}
+	roundTripIP := net.ParseIP(ipAddress.String())
+	if roundTripIP == nil || !bytes.Equal(ipAddress, roundTripIP) {
+		t.Errorf("Invalid generated IPv6 address %v", ipAddress)
 	}
 }
 
