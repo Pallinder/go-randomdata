@@ -33,7 +33,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 	"github.com/Pallinder/go-randomdata"
 )
 
