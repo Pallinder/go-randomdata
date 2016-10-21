@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
+	"net"
 	"strconv"
 	"strings"
 	"time"
@@ -260,6 +261,16 @@ func IpV4Address() string {
 	}
 
 	return strings.Join(blocks, ".")
+}
+
+// Returns a valid IPv6 address as net.IP
+func IpV6Address() string {
+	var ip net.IP
+	for i := 0; i < net.IPv6len; i++ {
+		number := uint8(seedAndReturnRandom(255))
+		ip = append(ip, number)
+	}
+	return ip.String()
 }
 
 // Returns random day
