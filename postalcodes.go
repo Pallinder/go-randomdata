@@ -1,4 +1,3 @@
-// Package randomdata implements a bunch of simple ways to generate (pseudo) random data
 package randomdata
 
 import (
