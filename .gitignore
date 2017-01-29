@@ -20,3 +20,8 @@ _cgo_export.*
 _testmain.go
 
 *.exe
+
+# Testing specific
+*.out
+*.prof
+*.test
