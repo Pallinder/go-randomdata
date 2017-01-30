@@ -49,6 +49,8 @@ type jsonContent struct {
 	StatesSmall         []string `json:statesSmall`
 	Days                []string `json:days`
 	Months              []string `json:months`
+	FemaleTitles        []string `json:femaleTitles`
+	MaleTitles          []string `json:maleTitles`
 }
 
 var jsonData = jsonContent{}
@@ -76,6 +78,24 @@ func seedAndReturnRandomFloat() float64 {
 // Returns a random part of a slice
 func randomFrom(source []string) string {
 	return source[seedAndReturnRandom(len(source))]
+}
+
+// Returns a random title, gender decides the gender of the name
+func Title(gender int) string {
+	var title = ""
+	switch gender {
+	case Male:
+		title = randomFrom(jsonData.MaleTitles)
+		break
+	case Female:
+		title = randomFrom(jsonData.FemaleTitles)
+		break
+	default:
+		rand.Seed(time.Now().UnixNano())
+		title = FirstName(rand.Intn(2))
+		break
+	}
+	return title
 }
 
 // Returns a random first name, gender decides the gender of the name
