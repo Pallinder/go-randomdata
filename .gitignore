@@ -1,3 +1,6 @@
+# git ignore for idea (IntelliJ, Gogland,...)
+.idea/
+
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
@@ -20,3 +23,8 @@ _cgo_export.*
 _testmain.go
 
 *.exe
+
+# Testing specific
+*.out
+*.prof
+*.test

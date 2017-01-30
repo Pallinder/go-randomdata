@@ -1,3 +1,4 @@
+
 go-randomdata
 ==============
 [![Build Status](https://travis-ci.org/Pallinder/go-randomdata.png)](https://travis-ci.org/Pallinder/go-randomdata)
@@ -19,6 +20,7 @@ randomdata is a tiny help suite for generating random data such as
 * random days
 * random months
 * random full date
+* random full profile
 
 ### Installation
 ```go get github.com/Pallinder/go-randomdata```
@@ -39,6 +41,15 @@ import (
 func main() {
 	// Print a random silly name
 	fmt.Println(randomdata.SillyName())
+
+	// Print a male title
+    fmt.Println(randomdata.Title(randomdata.Male))
+
+    // Print a female title
+    fmt.Println(randomdata.Title(randomdata.Female))
+
+    // Print a title with random gender
+    fmt.Println(randomdata.Title(randomdata.RandomGender))
 
 	// Print a male first name
 	fmt.Println(randomdata.FirstName(randomdata.Male))
@@ -133,6 +144,10 @@ func main() {
 	// Print full date like Thursday 22 Aug 2016
 	fmt.Println(randomdata.FullDate())
 
+	// Get a complete and randomised profile of data generally used for users
+	// There are many fields in the profile to use check the Profile struct definition in fullprofile.go
+	profile := randomdata.GenerateProfile(randomdata.Male | randomdata.Female | randomdata.RandomGender)
+	fmt.Printf("The new profile's username is: %s and password (md5)", profile.Login.Username, profile.Login.Md5)
 }
 
 ```
