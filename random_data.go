@@ -128,8 +128,9 @@ func FullName(gender int) string {
 
 // Returns a random email
 func Email() string {
-	return strings.ToLower(FirstName(RandomGender)+LastName()) + "@" + randomFrom(jsonData.Domains)
+	return strings.ToLower(FirstName(RandomGender)+LastName()) + StringNumberExt(1, "", 3) + "@" + randomFrom(jsonData.Domains)
 }
+
 
 // Returns a random country, countryStyle decides what kind of format the returned country will have
 func Country(countryStyle int64) string {
