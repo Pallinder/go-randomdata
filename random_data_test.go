@@ -3,6 +3,7 @@ package randomdata
 import (
 	"bytes"
 	"net"
+	"regexp"
 	"strconv"
 	"strings"
 	"testing"
@@ -246,6 +247,19 @@ func TestIpV6Address(t *testing.T) {
 	roundTripIP := net.ParseIP(ipAddress.String())
 	if roundTripIP == nil || !bytes.Equal(ipAddress, roundTripIP) {
 		t.Errorf("Invalid generated IPv6 address %v", ipAddress)
+	}
+}
+
+func TestMacAddress(t *testing.T) {
+	t.Log("MacAddress")
+
+	mac := MacAddress()
+	if len(mac) != 17 {
+		t.Errorf("Invalid generated Mac address %v", mac)
+	}
+
+	if !regexp.MustCompile(`([0-9a-fa-f]{2}[:-]){5}([0-9a-fa-f]{2})`).MatchString(mac) {
+		t.Errorf("Invalid generated Mac address %v", mac)
 	}
 }
 
