@@ -293,6 +293,17 @@ func IpV6Address() string {
 	return ip.String()
 }
 
+// MacAddress returns an mac address string
+func MacAddress() string {
+	blocks := []string{}
+	for i := 0; i < 6; i++ {
+		number := fmt.Sprintf("%02x", seedAndReturnRandom(255))
+		blocks = append(blocks, number)
+	}
+
+	return strings.Join(blocks, ":")
+}
+
 // Returns random day
 func Day() string {
 	return randomFrom(jsonData.Days)
