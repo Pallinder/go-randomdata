@@ -51,6 +51,7 @@ type jsonContent struct {
 	Months              []string `json:months`
 	FemaleTitles        []string `json:femaleTitles`
 	MaleTitles          []string `json:maleTitles`
+	Timezones           []string `json:timezones` // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 }
 
 var jsonData = jsonContent{}
@@ -323,4 +324,8 @@ func FullDate() string {
 	fullDate := day + " " + strconv.Itoa(Number(1, 30)) + " " + month[0:3] + " " + strconv.Itoa(year)
 	return fullDate
 
+}
+
+func Timezone() string {
+	return randomFrom(jsonData.Timezones)
 }
