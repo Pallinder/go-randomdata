@@ -307,8 +307,6 @@ func TestTimezone(t *testing.T) {
 	t.Log("TestTimezone")
 	timezone := Timezone()
 
-	t.Log(timezone)
-
 	if !findInSlice(jsonData.Timezones, timezone) {
 		t.Errorf("Couldnt find timezone in timezones: %v", timezone)
 	}
