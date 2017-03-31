@@ -303,6 +303,15 @@ func TestFullDate(t *testing.T) {
 	}
 }
 
+func TestTimezone(t *testing.T) {
+	t.Log("TestTimezone")
+	timezone := Timezone()
+
+	if !findInSlice(jsonData.Timezones, timezone) {
+		t.Errorf("Couldnt find timezone in timezones: %v", timezone)
+	}
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {
