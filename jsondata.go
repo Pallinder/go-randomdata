@@ -964,7 +964,11 @@ var data = []byte(`{
     ],
     "domains": [
         "test.com",
-        "example.com"
+        "test.net",
+        "test.org",
+        "example.com",
+        "example.net",
+        "example.org"
     ],
     "people": [
         "Adams",
