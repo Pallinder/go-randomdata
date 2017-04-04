@@ -2,7 +2,6 @@ package randomdata
 
 import (
 	"bytes"
-	"fmt"
 	"net"
 	"regexp"
 	"strconv"
@@ -364,7 +363,6 @@ func TestFullDateInRangeSwappedArgs(t *testing.T) {
 		t.Error("Didn't get valid date format.")
 	}
 
-	fmt.Println(fullDate)
 	if d != wrongMaxDate {
 		t.Error("Didn't return min date.")
 	}
