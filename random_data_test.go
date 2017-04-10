@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestRandomStringDigits(t *testing.T) {
@@ -300,6 +301,70 @@ func TestFullDate(t *testing.T) {
 
 	if fulldateOne == fulldateTwo {
 		t.Error("Invalid random full date")
+	}
+}
+
+func TestFullDateInRangeNoArgs(t *testing.T) {
+	t.Log("TestFullDateInRangeNoArgs")
+	fullDate := FullDateInRange()
+	_, err := time.Parse(DateOutputLayout, fullDate)
+
+	if err != nil {
+		t.Error("Didn't get valid date format.")
+	}
+}
+
+func TestFullDateInRangeOneArg(t *testing.T) {
+	t.Log("TestFullDateInRangeOneArg")
+	maxDate, _ := time.Parse(DateInputLayout, "2016-12-31")
+	for i := 0; i < 100000; i++ {
+		fullDate := FullDateInRange("2016-12-31")
+		d, err := time.Parse(DateOutputLayout, fullDate)
+
+		if err != nil {
+			t.Error("Didn't get valid date format.")
+		}
+
+		if d.After(maxDate) {
+			t.Error("Random date didn't match specified max date.")
+		}
+	}
+}
+
+func TestFullDateInRangeTwoArgs(t *testing.T) {
+	t.Log("TestFullDateInRangeTwoArgs")
+	minDate, _ := time.Parse(DateInputLayout, "2016-01-01")
+	maxDate, _ := time.Parse(DateInputLayout, "2016-12-31")
+	for i := 0; i < 100000; i++ {
+		fullDate := FullDateInRange("2016-01-01", "2016-12-31")
+		d, err := time.Parse(DateOutputLayout, fullDate)
+
+		if err != nil {
+			t.Error("Didn't get valid date format.")
+		}
+
+		if d.After(maxDate) {
+			t.Error("Random date didn't match specified max date.")
+		}
+
+		if d.Before(minDate) {
+			t.Error("Random date didn't match specified min date.")
+		}
+	}
+}
+
+func TestFullDateInRangeSwappedArgs(t *testing.T) {
+	t.Log("TestFullDateInRangeSwappedArgs")
+	wrongMaxDate, _ := time.Parse(DateInputLayout, "2016-01-01")
+	fullDate := FullDateInRange("2016-12-31", "2016-01-01")
+	d, err := time.Parse(DateOutputLayout, fullDate)
+
+	if err != nil {
+		t.Error("Didn't get valid date format.")
+	}
+
+	if d != wrongMaxDate {
+		t.Error("Didn't return min date.")
 	}
 }
 

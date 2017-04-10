@@ -30,6 +30,11 @@ const (
 	ThreeCharCountry = 2
 )
 
+const (
+	DateInputLayout  = "2006-01-02"
+	DateOutputLayout = "Monday 2 Jan 2006"
+)
+
 type jsonContent struct {
 	Adjectives          []string `json:adjectives`
 	Nouns               []string `json:nouns`
@@ -131,7 +136,6 @@ func FullName(gender int) string {
 func Email() string {
 	return strings.ToLower(FirstName(RandomGender)+LastName()) + StringNumberExt(1, "", 3) + "@" + randomFrom(jsonData.Domains)
 }
-
 
 // Returns a random country, countryStyle decides what kind of format the returned country will have
 func Country(countryStyle int64) string {
@@ -324,7 +328,35 @@ func FullDate() string {
 	year := timestamp.Year()
 	fullDate := day + " " + strconv.Itoa(Number(1, 30)) + " " + month[0:3] + " " + strconv.Itoa(year)
 	return fullDate
+}
 
+// Returns a date string within a given range, given in the format "2006-01-02".
+// If no argument is supplied it will return the result of randomdata.FullDate().
+// If only one argument is supplied it is treated as the max date to return.
+// If a second argument is supplied it returns a date between (and including) the two dates.
+// Returned date is in format "Monday 2 Jan 2006".
+func FullDateInRange(dateRange ...string) string {
+	var (
+		min        time.Time
+		max        time.Time
+		duration   int
+		dateString string
+	)
+	if len(dateRange) == 1 {
+		max, _ = time.Parse(DateInputLayout, dateRange[0])
+	} else if len(dateRange) == 2 {
+		min, _ = time.Parse(DateInputLayout, dateRange[0])
+		max, _ = time.Parse(DateInputLayout, dateRange[1])
+	}
+	if !max.IsZero() && max.After(min) {
+		duration = Number(int(max.Sub(min))) * -1
+		dateString = max.Add(time.Duration(duration)).Format(DateOutputLayout)
+	} else if !max.IsZero() && !max.After(min) {
+		dateString = max.Format(DateOutputLayout)
+	} else {
+		dateString = FullDate()
+	}
+	return dateString
 }
 
 func Timezone() string {

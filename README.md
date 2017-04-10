@@ -141,8 +141,14 @@ func main() {
 	// Print a month
 	fmt.Println(randomdata.Month())
   
-	// Print full date like Thursday 22 Aug 2016
+	// Print full date like Monday 22 Aug 2016
 	fmt.Println(randomdata.FullDate())
+
+	// Print full date <= Monday 22 Aug 2016
+	fmt.Println(randomdata.FullDateInRange("2016-08-22"))
+
+	// Print full date >= Monday 01 Aug 2016 and <= Monday 22 Aug 2016
+	fmt.Println(randomdata.FullDateInRange("2016-08-01", "2016-08-22"))
 
 	// Get a complete and randomised profile of data generally used for users
 	// There are many fields in the profile to use check the Profile struct definition in fullprofile.go
