@@ -21,6 +21,7 @@ randomdata is a tiny help suite for generating random data such as
 * random months
 * random full date
 * random full profile
+* random date inside range
 
 ### Installation
 ```go get github.com/Pallinder/go-randomdata```
@@ -43,13 +44,13 @@ func main() {
 	fmt.Println(randomdata.SillyName())
 
 	// Print a male title
-    fmt.Println(randomdata.Title(randomdata.Male))
+    	fmt.Println(randomdata.Title(randomdata.Male))
 
-    // Print a female title
-    fmt.Println(randomdata.Title(randomdata.Female))
+    	// Print a female title
+    	fmt.Println(randomdata.Title(randomdata.Female))
 
-    // Print a title with random gender
-    fmt.Println(randomdata.Title(randomdata.RandomGender))
+    	// Print a title with random gender
+   	fmt.Println(randomdata.Title(randomdata.RandomGender))
 
 	// Print a male first name
 	fmt.Println(randomdata.FirstName(randomdata.Male))
