@@ -57,6 +57,9 @@ type jsonContent struct {
 	FemaleTitles        []string `json:femaleTitles`
 	MaleTitles          []string `json:maleTitles`
 	Timezones           []string `json:timezones` // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	Topics              []string `json:topics`
+	Sizes               []string `json:sizes`
+	Placements          []string `json:placements`
 }
 
 var jsonData = jsonContent{}
@@ -192,6 +195,26 @@ func Address() string {
 // Returns a random paragraph
 func Paragraph() string {
 	return randomFrom(jsonData.Paragraphs)
+}
+
+// Returns a random topic
+func Topic() string {
+	return randomFrom(jsonData.Topics)
+}
+
+// Returns a random size
+func Size() string {
+	return randomFrom(jsonData.Sizes)
+}
+
+// Returns a random placement
+func Placement() string {
+	return randomFrom(jsonData.Placements)
+}
+
+// Returns a random word separator
+func WordSeparator() string {
+	return randomFrom([]string{" ", "_", "-"})
 }
 
 // Returns a random number, if only one integer is supplied it is treated as the max value to return
@@ -361,4 +384,76 @@ func FullDateInRange(dateRange ...string) string {
 
 func Timezone() string {
 	return randomFrom(jsonData.Timezones)
+}
+
+///////////// random filenames ///////////////////////////
+
+type generator func() string
+
+var (
+	generators = []generator{
+		Topic, // a topic
+		func() string { return Country(FullCountry) },   // full country name
+		func() string { return FullName(RandomGender) }, // full name
+		Noun, // a noun
+		City, // a city
+		Size, // a shirt size
+		func() string { // a date between 2000-01-01 and today
+			max := time.Now()
+			min := time.Date(2000, time.January, 1, 0, 0, 0, 0, time.UTC)
+			duration := Number(int(max.Sub(min))) * -1
+			return max.Add(time.Duration(duration)).Format(randomFrom(dateFormats))
+		},
+		func() string { return StringNumberExt(1, "", seedAndReturnRandom(7)+1) }, // a string of digits
+		Placement, // a placement
+	}
+
+	dateFormats = []string{
+		"2006-01-02",
+		"20060102",
+		"060102",
+		"2006",
+		"06",
+	}
+
+	drand             = rand.New(rand.NewSource(time.Now().UnixNano()))
+	distributionCurve = rand.NewZipf(drand, 3.14, 2.72, uint64(len(generators)-1))
+)
+
+// Returns a random weighted list with a random number of contents generators
+func generatorList() (list []generator) {
+	used := map[int]bool{}
+	presets := seedAndReturnRandom(len(generators)-2) + 2
+
+	for presets > 0 {
+		gen := int(distributionCurve.Uint64())
+		if !used[gen] {
+			used[gen] = true
+			list = append(list, generators[gen])
+			presets--
+		}
+	}
+
+	return
+}
+
+func FileName(ext string) string {
+	ext = strings.Replace(ext, ".", "", -1)
+	sep := WordSeparator()
+	res := []string{}
+	genlist := generatorList()
+
+	for _, g := range genlist {
+		part := strings.Replace(g(), " ", "", -1)
+		part = strings.Replace(part, ",", "", -1)
+		part = strings.Replace(part, ".", "", -1)
+		res = append(res, part)
+	}
+
+	fname := strings.Join(res, sep)
+	if ext != "" {
+		fname += "." + ext
+	}
+
+	return fname
 }
