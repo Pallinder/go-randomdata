@@ -386,18 +386,16 @@ func Timezone() string {
 	return randomFrom(jsonData.Timezones)
 }
 
-///////////// random filenames ///////////////////////////
-
 type generator func() string
 
 var (
 	generators = []generator{
-		Topic, // a topic
+		Topic,
 		func() string { return Country(FullCountry) },   // full country name
 		func() string { return FullName(RandomGender) }, // full name
-		Noun, // a noun
-		City, // a city
-		Size, // a shirt size
+		Noun,
+		City,
+		Size,
 		func() string { // a date between 2000-01-01 and today
 			max := time.Now()
 			min := time.Date(2000, time.January, 1, 0, 0, 0, 0, time.UTC)
@@ -405,7 +403,7 @@ var (
 			return max.Add(time.Duration(duration)).Format(randomFrom(dateFormats))
 		},
 		func() string { return StringNumberExt(1, "", seedAndReturnRandom(7)+1) }, // a string of digits
-		Placement, // a placement
+		Placement,
 	}
 
 	dateFormats = []string{
