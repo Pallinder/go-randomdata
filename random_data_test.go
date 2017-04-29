@@ -137,6 +137,24 @@ func TestCountry(t *testing.T) {
 	}
 }
 
+func TestTopic(t *testing.T) {
+	t.Log("TestTopic")
+	topic := Topic()
+
+	if !findInSlice(jsonData.Topics, topic) {
+		t.Error("Could not find topic in topics")
+	}
+}
+
+func TestFileName(t *testing.T) {
+	t.Log("TestFileName")
+	filename := FileName(".txt")
+
+	if !strings.HasSuffix(filename, ".txt") {
+		t.Error("Could not find extension")
+	}
+}
+
 func TestCurrency(t *testing.T) {
 	t.Log("TestCurrency")
 	if !findInSlice(jsonData.Currencies, Currency()) {

@@ -22,6 +22,7 @@ randomdata is a tiny help suite for generating random data such as
 * random full date
 * random full profile
 * random date inside range
+* random filename
 
 ### Installation
 ```go get github.com/Pallinder/go-randomdata```
@@ -134,7 +135,7 @@ func main() {
 	fmt.Println(randomdata.IpV4Address())
 
 	// Print a valid random IPv6 address
-	fmt.Println(randomdata.Ipv6Address())
+	fmt.Println(randomdata.IpV6Address())
 
 	// Print a day
 	fmt.Println(randomdata.Day())
@@ -150,6 +151,9 @@ func main() {
 
 	// Print full date >= Monday 01 Aug 2016 and <= Monday 22 Aug 2016
 	fmt.Println(randomdata.FullDateInRange("2016-08-01", "2016-08-22"))
+
+	// Print random filename
+	fmt.Println(FileName("txt"))
 
 	// Get a complete and randomised profile of data generally used for users
 	// There are many fields in the profile to use check the Profile struct definition in fullprofile.go

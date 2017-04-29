@@ -97,4 +97,6 @@ func ExampleRandomdata() {
 	// Print full date
 	fmt.Println(FullDate())
 
+	// Print random filename
+	fmt.Println(FileName("txt"))
 }
