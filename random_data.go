@@ -246,6 +246,15 @@ func StringNumber(numberPairs int, separator string) string {
 	return StringNumberExt(numberPairs, separator, 2)
 }
 
+// Returns a random string from a list of strings
+func StringSample(stringList ...string) string {
+	str := ""
+	if len(stringList) > 0 {
+		str = stringList[Number(0, len(stringList))]
+	}
+	return str
+}
+
 func Boolean() bool {
 	nr := seedAndReturnRandom(2)
 	return nr != 0

@@ -3,6 +3,7 @@ package randomdata
 import (
 	"bytes"
 	"net"
+	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
@@ -291,6 +292,29 @@ func TestMonth(t *testing.T) {
 
 	if !findInSlice(jsonData.Months, month) {
 		t.Error("Couldnt find month in months")
+	}
+}
+
+func TestStringSample(t *testing.T) {
+	t.Log("TestStringSample")
+	list := []string{"str1", "str2", "str3"}
+	str := StringSample(list...)
+	if reflect.TypeOf(str).String() != "string" {
+		t.Error("Didn't get a string object")
+	}
+	if !findInSlice(list, str) {
+		t.Error("Didn't get string from sample list")
+	}
+}
+
+func TestStringSampleEmptyList(t *testing.T) {
+	t.Log("TestStringSample")
+	str := StringSample()
+	if reflect.TypeOf(str).String() != "string" {
+		t.Error("Didn't get a string object")
+	}
+	if str != "" {
+		t.Error("Didn't get empty string for empty sample list")
 	}
 }
 
