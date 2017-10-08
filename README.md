@@ -139,6 +139,9 @@ func main() {
 	// Print a valid random IPv6 address
 	fmt.Println(randomdata.Ipv6Address())
 
+	// Print a browser's user agent string
+	fmt.Println(randomdata.UserAgentString())
+
 	// Print a day
 	fmt.Println(randomdata.Day())
   

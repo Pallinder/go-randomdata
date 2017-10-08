@@ -401,6 +401,19 @@ func TestTimezone(t *testing.T) {
 	}
 }
 
+func TestUserAgentString(t *testing.T) {
+	t.Log("UserAgentString")
+
+	ua := UserAgentString()
+	if len(ua) == 0 {
+		t.Error("Empty User Agent String")
+	}
+
+	if !regexp.MustCompile(`^[a-zA-Z]+\/[0-9]+.[0-9]+\ \(.*\).*\/.*\.[0-9]+$`).MatchString(ua) {
+		t.Errorf("Invalid generated User Agent String: %v", ua)
+	}
+}
+
 func findInSlice(source []string, toFind string) bool {
 	for _, text := range source {
 		if text == toFind {
