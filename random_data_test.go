@@ -409,7 +409,7 @@ func TestUserAgentString(t *testing.T) {
 		t.Error("Empty User Agent String")
 	}
 
-	if !regexp.MustCompile(`^[a-zA-Z]+\/[0-9]+.[0-9]+\ \(.*\).*\/.*\.[0-9]+$`).MatchString(ua) {
+	if !regexp.MustCompile(`^[a-zA-Z]+\/[0-9]+.[0-9]+\ \(.*\).*$`).MatchString(ua) {
 		t.Errorf("Invalid generated User Agent String: %v", ua)
 	}
 }
