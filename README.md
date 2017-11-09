@@ -44,12 +44,12 @@ func main() {
 	fmt.Println(randomdata.SillyName())
 
 	// Print a male title
-    	fmt.Println(randomdata.Title(randomdata.Male))
+	fmt.Println(randomdata.Title(randomdata.Male))
 
-    	// Print a female title
-    	fmt.Println(randomdata.Title(randomdata.Female))
+	// Print a female title
+	fmt.Println(randomdata.Title(randomdata.Female))
 
-    	// Print a title with random gender
+	// Print a title with random gender
    	fmt.Println(randomdata.Title(randomdata.RandomGender))
 
 	// Print a male first name
@@ -129,12 +129,18 @@ func main() {
 	
 	// Print a set of 2 random 3-Digits numbers as a string
 	fmt.Println(randomdata.StringNumberExt(2, "-", 3)) 
+
+	// Print a random string sampled from a list of strings
+	fmt.Println(randomdata.StringSample("my string 1", "my string 2", "my string 3"))
 	
 	// Print a valid random IPv4 address
 	fmt.Println(randomdata.IpV4Address())
 
 	// Print a valid random IPv6 address
 	fmt.Println(randomdata.Ipv6Address())
+
+	// Print a browser's user agent string
+	fmt.Println(randomdata.UserAgentString())
 
 	// Print a day
 	fmt.Println(randomdata.Day())
@@ -161,6 +167,7 @@ func main() {
 
 ### Contributors
 * https://github.com/jteeuwen
+* https://github.com/n1try
 
 
 

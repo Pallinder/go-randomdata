@@ -56,7 +56,8 @@ type jsonContent struct {
 	Months              []string `json:months`
 	FemaleTitles        []string `json:femaleTitles`
 	MaleTitles          []string `json:maleTitles`
-	Timezones           []string `json:timezones` // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	Timezones           []string `json:timezones`  // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	UserAgents          []string `json:userAgents` // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
 }
 
 var jsonData = jsonContent{}
@@ -246,6 +247,15 @@ func StringNumber(numberPairs int, separator string) string {
 	return StringNumberExt(numberPairs, separator, 2)
 }
 
+// Returns a random string from a list of strings
+func StringSample(stringList ...string) string {
+	str := ""
+	if len(stringList) > 0 {
+		str = stringList[Number(0, len(stringList))]
+	}
+	return str
+}
+
 func Boolean() bool {
 	nr := seedAndReturnRandom(2)
 	return nr != 0
@@ -361,4 +371,8 @@ func FullDateInRange(dateRange ...string) string {
 
 func Timezone() string {
 	return randomFrom(jsonData.Timezones)
+}
+
+func UserAgentString() string {
+	return randomFrom(jsonData.UserAgents)
 }

@@ -3,6 +3,7 @@ package randomdata
 import (
 	"bytes"
 	"net"
+	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
@@ -294,6 +295,29 @@ func TestMonth(t *testing.T) {
 	}
 }
 
+func TestStringSample(t *testing.T) {
+	t.Log("TestStringSample")
+	list := []string{"str1", "str2", "str3"}
+	str := StringSample(list...)
+	if reflect.TypeOf(str).String() != "string" {
+		t.Error("Didn't get a string object")
+	}
+	if !findInSlice(list, str) {
+		t.Error("Didn't get string from sample list")
+	}
+}
+
+func TestStringSampleEmptyList(t *testing.T) {
+	t.Log("TestStringSample")
+	str := StringSample()
+	if reflect.TypeOf(str).String() != "string" {
+		t.Error("Didn't get a string object")
+	}
+	if str != "" {
+		t.Error("Didn't get empty string for empty sample list")
+	}
+}
+
 func TestFullDate(t *testing.T) {
 	t.Log("TestFullDate")
 	fulldateOne := FullDate()
@@ -374,6 +398,19 @@ func TestTimezone(t *testing.T) {
 
 	if !findInSlice(jsonData.Timezones, timezone) {
 		t.Errorf("Couldnt find timezone in timezones: %v", timezone)
+	}
+}
+
+func TestUserAgentString(t *testing.T) {
+	t.Log("UserAgentString")
+
+	ua := UserAgentString()
+	if len(ua) == 0 {
+		t.Error("Empty User Agent String")
+	}
+
+	if !regexp.MustCompile(`^[a-zA-Z]+\/[0-9]+.[0-9]+\ \(.*\).*$`).MatchString(ua) {
+		t.Errorf("Invalid generated User Agent String: %v", ua)
 	}
 }
 
