@@ -1,7 +1,5 @@
 # go-randomdata
 
----
-
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Pallinder/go-randomdata/issues)
 [![GoDoc](https://godoc.org/github.com/Pallinder/go-randomdata?status.svg)](https://godoc.org/github.com/Pallinder/go-randomdata)
 [![Build Status](https://travis-ci.org/Pallinder/go-randomdata.png)](https://travis-ci.org/Pallinder/go-randomdata)
@@ -54,7 +52,7 @@ func main() {
     fmt.Println(randomdata.Title(randomdata.Female))
 
     // Print a title with random gender
-       fmt.Println(randomdata.Title(randomdata.RandomGender))
+    fmt.Println(randomdata.Title(randomdata.RandomGender))
 
     // Print a male first name
     fmt.Println(randomdata.FirstName(randomdata.Male))
@@ -174,5 +172,4 @@ func main() {
 * [jteeuwen](https://github.com/jteeuwen)
 * [n1try](https://github.com/n1try)
 
-
-
+All the other contributors are listed [here](https://github.com/Pallinder/go-randomdata/graphs/contributors).
