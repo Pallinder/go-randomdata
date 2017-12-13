@@ -14,7 +14,7 @@ import (
 )
 
 var letterRunes = []rune("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-var portrait_dirs = []string{"men", "women"}
+var portraitDirs = []string{"men", "women"}
 
 type Profile struct {
 	Gender string `json:"gender"`
@@ -142,9 +142,9 @@ func GenerateProfile(gender int) *Profile {
 	profile.Login.Sha256 = getSha256(pass + salt)
 
 	pic := rand.Intn(35)
-	profile.Picture.Large = fmt.Sprintf("https://randomuser.me/api/portraits/%s/%d.jpg", portrait_dirs[gender], pic)
-	profile.Picture.Medium = fmt.Sprintf("https://randomuser.me/api/portraits/med/%s/%d.jpg", portrait_dirs[gender], pic)
-	profile.Picture.Thumbnail = fmt.Sprintf("https://randomuser.me/api/portraits/thumb/%s/%d.jpg", portrait_dirs[gender], pic)
+	profile.Picture.Large = fmt.Sprintf("https://randomuser.me/api/portraits/%s/%d.jpg", portraitDirs[gender], pic)
+	profile.Picture.Medium = fmt.Sprintf("https://randomuser.me/api/portraits/med/%s/%d.jpg", portraitDirs[gender], pic)
+	profile.Picture.Thumbnail = fmt.Sprintf("https://randomuser.me/api/portraits/thumb/%s/%d.jpg", portraitDirs[gender], pic)
 
 	return profile
 }
