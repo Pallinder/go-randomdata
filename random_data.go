@@ -36,28 +36,28 @@ const (
 )
 
 type jsonContent struct {
-	Adjectives          []string `json:adjectives`
-	Nouns               []string `json:nouns`
-	FirstNamesFemale    []string `json:firstNamesFemale`
-	FirstNamesMale      []string `json:firstNamesMale`
-	LastNames           []string `json:lastNames`
-	Domains             []string `json:domains`
-	People              []string `json:people`
-	StreetTypes         []string `json:streetTypes` // Taken from https://github.com/tomharris/random_data/blob/master/lib/random_data/locations.rb
-	Paragraphs          []string `json:paragraphs`  // Taken from feedbooks.com
-	Countries           []string `json:countries`   // Fetched from the world bank at http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS
-	CountriesThreeChars []string `json:countriesThreeChars`
-	CountriesTwoChars   []string `json:countriesTwoChars`
-	Currencies          []string `json:currencies` //https://github.com/OpenBookPrices/country-data
-	Cities              []string `json:cities`
-	States              []string `json:states`
-	StatesSmall         []string `json:statesSmall`
-	Days                []string `json:days`
-	Months              []string `json:months`
-	FemaleTitles        []string `json:femaleTitles`
-	MaleTitles          []string `json:maleTitles`
-	Timezones           []string `json:timezones`  // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-	UserAgents          []string `json:userAgents` // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
+	Adjectives          []string `json:"adjectives"`
+	Nouns               []string `json:"nouns"`
+	FirstNamesFemale    []string `json:"firstNamesFemale"`
+	FirstNamesMale      []string `json:"firstNamesMale"`
+	LastNames           []string `json:"lastNames"`
+	Domains             []string `json:"domains"`
+	People              []string `json:"people"`
+	StreetTypes         []string `json:"streetTypes"` // Taken from https://github.com/tomharris/random_data/blob/master/lib/random_data/locations.rb
+	Paragraphs          []string `json:"paragraphs"`  // Taken from feedbooks.com
+	Countries           []string `json:"countries"`   // Fetched from the world bank at http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS
+	CountriesThreeChars []string `json:"countriesThreeChars"`
+	CountriesTwoChars   []string `json:"countriesTwoChars"`
+	Currencies          []string `json:"currencies"` //https://github.com/OpenBookPrices/country-data
+	Cities              []string `json:"cities"`
+	States              []string `json:"states"`
+	StatesSmall         []string `json:"statesSmall"`
+	Days                []string `json:"days"`
+	Months              []string `json:"months"`
+	FemaleTitles        []string `json:"femaleTitles"`
+	MaleTitles          []string `json:"maleTitles"`
+	Timezones           []string `json:"timezones"`  // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	UserAgents          []string `json:"userAgents"` // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
 }
 
 var jsonData = jsonContent{}
