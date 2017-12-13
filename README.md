@@ -2,6 +2,7 @@
 
 ---
 
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)]
 [![GoDoc](https://godoc.org/github.com/Pallinder/go-randomdata?status.svg)](https://godoc.org/github.com/Pallinder/go-randomdata)
 [![Build Status](https://travis-ci.org/Pallinder/go-randomdata.png)](https://travis-ci.org/Pallinder/go-randomdata)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Pallinder/go-randomdata)](https://goreportcard.com/report/github.com/Pallinder/go-randomdata)
