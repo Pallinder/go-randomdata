@@ -36,28 +36,28 @@ const (
 )
 
 type jsonContent struct {
-	Adjectives          []string `json:adjectives`
-	Nouns               []string `json:nouns`
-	FirstNamesFemale    []string `json:firstNamesFemale`
-	FirstNamesMale      []string `json:firstNamesMale`
-	LastNames           []string `json:lastNames`
-	Domains             []string `json:domains`
-	People              []string `json:people`
-	StreetTypes         []string `json:streetTypes` // Taken from https://github.com/tomharris/random_data/blob/master/lib/random_data/locations.rb
-	Paragraphs          []string `json:paragraphs`  // Taken from feedbooks.com
-	Countries           []string `json:countries`   // Fetched from the world bank at http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS
-	CountriesThreeChars []string `json:countriesThreeChars`
-	CountriesTwoChars   []string `json:countriesTwoChars`
-	Currencies          []string `json:currencies` //https://github.com/OpenBookPrices/country-data
-	Cities              []string `json:cities`
-	States              []string `json:states`
-	StatesSmall         []string `json:statesSmall`
-	Days                []string `json:days`
-	Months              []string `json:months`
-	FemaleTitles        []string `json:femaleTitles`
-	MaleTitles          []string `json:maleTitles`
-	Timezones           []string `json:timezones`  // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-	UserAgents          []string `json:userAgents` // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
+	Adjectives          []string `json:"adjectives"`
+	Nouns               []string `json:"nouns"`
+	FirstNamesFemale    []string `json:"firstNamesFemale"`
+	FirstNamesMale      []string `json:"firstNamesMale"`
+	LastNames           []string `json:"lastNames"`
+	Domains             []string `json:"domains"`
+	People              []string `json:"people"`
+	StreetTypes         []string `json:"streetTypes"` // Taken from https://github.com/tomharris/random_data/blob/master/lib/random_data/locations.rb
+	Paragraphs          []string `json:"paragraphs"`  // Taken from feedbooks.com
+	Countries           []string `json:"countries"`   // Fetched from the world bank at http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS
+	CountriesThreeChars []string `json:"countriesThreeChars"`
+	CountriesTwoChars   []string `json:"countriesTwoChars"`
+	Currencies          []string `json:"currencies"` //https://github.com/OpenBookPrices/country-data
+	Cities              []string `json:"cities"`
+	States              []string `json:"states"`
+	StatesSmall         []string `json:"statesSmall"`
+	Days                []string `json:"days"`
+	Months              []string `json:"months"`
+	FemaleTitles        []string `json:"femaleTitles"`
+	MaleTitles          []string `json:"maleTitles"`
+	Timezones           []string `json:"timezones"`  // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	UserAgents          []string `json:"userAgents"` // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
 }
 
 var jsonData = jsonContent{}
@@ -87,7 +87,7 @@ func randomFrom(source []string) string {
 	return source[seedAndReturnRandom(len(source))]
 }
 
-// Returns a random title, gender decides the gender of the name
+// Title returns a random title, gender decides the gender of the name
 func Title(gender int) string {
 	var title = ""
 	switch gender {
@@ -105,7 +105,7 @@ func Title(gender int) string {
 	return title
 }
 
-// Returns a random first name, gender decides the gender of the name
+// FirstName returns a random first name, gender decides the gender of the name
 func FirstName(gender int) string {
 	var name = ""
 	switch gender {
@@ -123,22 +123,22 @@ func FirstName(gender int) string {
 	return name
 }
 
-// Returns a random last name
+// LastName returns a random last name
 func LastName() string {
 	return randomFrom(jsonData.LastNames)
 }
 
-// Returns a combinaton of FirstName LastName randomized, gender decides the gender of the name
+// FullName returns a combination of FirstName LastName randomized, gender decides the gender of the name
 func FullName(gender int) string {
 	return FirstName(gender) + " " + LastName()
 }
 
-// Returns a random email
+// Email returns a random email
 func Email() string {
 	return strings.ToLower(FirstName(RandomGender)+LastName()) + StringNumberExt(1, "", 3) + "@" + randomFrom(jsonData.Domains)
 }
 
-// Returns a random country, countryStyle decides what kind of format the returned country will have
+// Country returns a random country, countryStyle decides what kind of format the returned country will have
 func Country(countryStyle int64) string {
 	country := ""
 	switch countryStyle {
@@ -160,42 +160,40 @@ func Country(countryStyle int64) string {
 	return country
 }
 
-// Returns a random currency under ISO 4217 format
+// Currency returns a random currency under ISO 4217 format
 func Currency() string {
 	return randomFrom(jsonData.Currencies)
 }
 
-// Returns a random city
+// City returns a random city
 func City() string {
 	return randomFrom(jsonData.Cities)
 }
 
-// Returns a random american state
+// State returns a random american state
 func State(typeOfState int) string {
 	if typeOfState == Small {
 		return randomFrom(jsonData.StatesSmall)
-	} else {
-		return randomFrom(jsonData.States)
 	}
-	return ""
+	return randomFrom(jsonData.States)
 }
 
-// Returns a random fake street name
+// Street returns a random fake street name
 func Street() string {
 	return fmt.Sprintf("%s %s", randomFrom(jsonData.People), randomFrom(jsonData.StreetTypes))
 }
 
-// Returns an american style address
+// Address returns an american style address
 func Address() string {
 	return fmt.Sprintf("%d %s,\n%s, %s, %s", Number(100), Street(), City(), State(Small), PostalCode("US"))
 }
 
-// Returns a random paragraph
+// Paragraph returns a random paragraph
 func Paragraph() string {
 	return randomFrom(jsonData.Paragraphs)
 }
 
-// Returns a random number, if only one integer is supplied it is treated as the max value to return
+// Number returns a random number, if only one integer is supplied it is treated as the max value to return
 // if a second argument is supplied it returns a number between (and including) the two numbers
 func Number(numberRange ...int) int {
 	nr := 0
@@ -242,12 +240,12 @@ func StringNumberExt(numberPairs int, separator string, numberOfDigits int) stri
 	return numberString
 }
 
-// Returns a random number as a string
+// StringNumber returns a random number as a string
 func StringNumber(numberPairs int, separator string) string {
 	return StringNumberExt(numberPairs, separator, 2)
 }
 
-// Returns a random string from a list of strings
+// StringSample returns a random string from a list of strings
 func StringSample(stringList ...string) string {
 	str := ""
 	if len(stringList) > 0 {
@@ -261,12 +259,12 @@ func Boolean() bool {
 	return nr != 0
 }
 
-// Returns a random noun
+// Noun returns a random noun
 func Noun() string {
 	return randomFrom(jsonData.Nouns)
 }
 
-// Returns a random adjective
+// Adjective returns a random adjective
 func Adjective() string {
 	return randomFrom(jsonData.Adjectives)
 }
@@ -283,12 +281,12 @@ func lowercaseFirstLetter(word string) string {
 	return string(a)
 }
 
-// Returns a silly name, useful for randomizing naming of things
+// SillyName returns a silly name, useful for randomizing naming of things
 func SillyName() string {
 	return uppercaseFirstLetter(Noun()) + Adjective()
 }
 
-// Returns a valid IPv4 address as string
+// IpV4Address returns a valid IPv4 address as string
 func IpV4Address() string {
 	blocks := []string{}
 	for i := 0; i < 4; i++ {
@@ -299,7 +297,7 @@ func IpV4Address() string {
 	return strings.Join(blocks, ".")
 }
 
-// Returns a valid IPv6 address as net.IP
+// IpV6Address returns a valid IPv6 address as net.IP
 func IpV6Address() string {
 	var ip net.IP
 	for i := 0; i < net.IPv6len; i++ {
@@ -320,17 +318,17 @@ func MacAddress() string {
 	return strings.Join(blocks, ":")
 }
 
-// Returns random day
+// Day returns random day
 func Day() string {
 	return randomFrom(jsonData.Days)
 }
 
-// Returns random month
+// Month returns random month
 func Month() string {
 	return randomFrom(jsonData.Months)
 }
 
-// Returns full date
+// FullDate returns full date
 func FullDate() string {
 	timestamp := time.Now()
 	day := Day()
@@ -340,7 +338,7 @@ func FullDate() string {
 	return fullDate
 }
 
-// Returns a date string within a given range, given in the format "2006-01-02".
+// FullDateInRange returns a date string within a given range, given in the format "2006-01-02".
 // If no argument is supplied it will return the result of randomdata.FullDate().
 // If only one argument is supplied it is treated as the max date to return.
 // If a second argument is supplied it returns a date between (and including) the two dates.

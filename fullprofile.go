@@ -1,24 +1,24 @@
 package randomdata
 
 import (
-	"math/rand"
-	"time"
-	"fmt"
-	"strconv"
-	"strings"
 	"crypto/md5"
-	"encoding/hex"
-	"encoding/base64"
 	"crypto/sha1"
 	"crypto/sha256"
+	"encoding/base64"
+	"encoding/hex"
+	"fmt"
+	"math/rand"
+	"strconv"
+	"strings"
+	"time"
 )
 
 var letterRunes = []rune("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-var portrait_dirs = []string{"men", "women"}
+var portraitDirs = []string{"men", "women"}
 
 type Profile struct {
 	Gender string `json:"gender"`
-	Name struct {
+	Name   struct {
 		First string `json:"first"`
 		Last  string `json:"last"`
 		Title string `json:"title"`
@@ -30,7 +30,7 @@ type Profile struct {
 		Postcode int    `json:"postcode"`
 	} `json:"location"`
 
-	Email  string `json:"email"`
+	Email string `json:"email"`
 	Login struct {
 		Username string `json:"username"`
 		Password string `json:"password"`
@@ -40,12 +40,12 @@ type Profile struct {
 		Sha256   string `json:"sha256"`
 	} `json:"login"`
 
-	Dob    string `json:"dob"`
+	Dob        string `json:"dob"`
 	Registered string `json:"registered"`
-	Phone   string `json:"phone"`
-	Cell   string `json:"cell"`
+	Phone      string `json:"phone"`
+	Cell       string `json:"cell"`
 
-	ID     struct {
+	ID struct {
 		Name  string      `json:"name"`
 		Value interface{} `json:"value"`
 	} `json:"id"`
@@ -55,7 +55,7 @@ type Profile struct {
 		Medium    string `json:"medium"`
 		Thumbnail string `json:"thumbnail"`
 	} `json:"picture"`
-	Nat     string `json:"nat"`
+	Nat string `json:"nat"`
 }
 
 func RandStringRunes(n int) string {
@@ -78,7 +78,6 @@ func getSha1(text string) string {
 	sha := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
 	return sha
 }
-
 
 func getSha256(text string) string {
 	hasher := sha256.New()
@@ -138,14 +137,14 @@ func GenerateProfile(gender int) *Profile {
 	salt := RandStringRunes(16)
 	profile.Login.Password = pass
 	profile.Login.Salt = salt
-	profile.Login.Md5 = getMD5Hash(pass+salt)
-	profile.Login.Sha1 = getSha1(pass+salt)
-	profile.Login.Sha256 = getSha256(pass+salt)
+	profile.Login.Md5 = getMD5Hash(pass + salt)
+	profile.Login.Sha1 = getSha1(pass + salt)
+	profile.Login.Sha256 = getSha256(pass + salt)
 
 	pic := rand.Intn(35)
-	profile.Picture.Large = fmt.Sprintf("https://randomuser.me/api/portraits/%s/%d.jpg", portrait_dirs[gender], pic)
-	profile.Picture.Medium = fmt.Sprintf("https://randomuser.me/api/portraits/med/%s/%d.jpg", portrait_dirs[gender], pic)
-	profile.Picture.Thumbnail = fmt.Sprintf("https://randomuser.me/api/portraits/thumb/%s/%d.jpg", portrait_dirs[gender], pic)
+	profile.Picture.Large = fmt.Sprintf("https://randomuser.me/api/portraits/%s/%d.jpg", portraitDirs[gender], pic)
+	profile.Picture.Medium = fmt.Sprintf("https://randomuser.me/api/portraits/med/%s/%d.jpg", portraitDirs[gender], pic)
+	profile.Picture.Thumbnail = fmt.Sprintf("https://randomuser.me/api/portraits/thumb/%s/%d.jpg", portraitDirs[gender], pic)
 
 	return profile
 }
