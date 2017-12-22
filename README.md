@@ -162,7 +162,7 @@ func main() {
     // Get a complete and randomised profile of data generally used for users
     // There are many fields in the profile to use check the Profile struct definition in fullprofile.go
     profile := randomdata.GenerateProfile(randomdata.Male | randomdata.Female | randomdata.RandomGender)
-    fmt.Printf("The new profile's username is: %s and password (md5)", profile.Login.Username, profile.Login.Md5)
+    fmt.Printf("The new profile's username is: %s and password (md5): %s\n", profile.Login.Username, profile.Login.Md5)
 }
 
 ```
