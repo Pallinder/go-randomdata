@@ -139,7 +139,7 @@ func main() {
     fmt.Println(randomdata.IpV4Address())
 
     // Print a valid random IPv6 address
-    fmt.Println(randomdata.Ipv6Address())
+    fmt.Println(randomdata.IpV6Address())
 
     // Print a browser's user agent string
     fmt.Println(randomdata.UserAgentString())
