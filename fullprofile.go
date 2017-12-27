@@ -89,17 +89,17 @@ func getSha256(text string) string {
 func GenerateProfile(gender int) *Profile {
 	rand.Seed(time.Now().UnixNano())
 	profile := &Profile{}
-	if gender == RandomGender {
+	if gender == Male {
+		profile.Gender = "male"
+	} else if gender == Female {
+		profile.Gender = "female"
+	} else {
 		gender = rand.Intn(2)
 		if gender == Male {
 			profile.Gender = "male"
 		} else {
 			profile.Gender = "female"
 		}
-	} else if gender == Male {
-		profile.Gender = "male"
-	} else {
-		profile.Gender = "female"
 	}
 	profile.Name.Title = Title(gender)
 	profile.Name.First = FirstName(gender)
