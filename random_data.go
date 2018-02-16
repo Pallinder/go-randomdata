@@ -62,6 +62,12 @@ type jsonContent struct {
 
 var jsonData = jsonContent{}
 
+var seed int64 = 0;
+
+func Seed(in int64) {
+	seed = in;
+}
+
 func init() {
 	jsonData = jsonContent{}
 
@@ -73,12 +79,16 @@ func init() {
 }
 
 func seedAndReturnRandom(n int) int {
-	rand.Seed(time.Now().UnixNano())
+	if seed == 0 {
+		rand.Seed(time.Now().UnixNano())
+	}
 	return rand.Intn(n)
 }
 
 func seedAndReturnRandomFloat() float64 {
-	rand.Seed(time.Now().UnixNano())
+	if seed == 0 {
+		rand.Seed(time.Now().UnixNano())
+	}
 	return rand.Float64()
 }
 
@@ -98,8 +108,7 @@ func Title(gender int) string {
 		title = randomFrom(jsonData.FemaleTitles)
 		break
 	default:
-		rand.Seed(time.Now().UnixNano())
-		title = FirstName(rand.Intn(2))
+		title = Title(rand.Intn(2))
 		break
 	}
 	return title
@@ -116,7 +125,6 @@ func FirstName(gender int) string {
 		name = randomFrom(jsonData.FirstNamesFemale)
 		break
 	default:
-		rand.Seed(time.Now().UnixNano())
 		name = FirstName(rand.Intn(2))
 		break
 	}
@@ -197,7 +205,6 @@ func Paragraph() string {
 // if a second argument is supplied it returns a number between (and including) the two numbers
 func Number(numberRange ...int) int {
 	nr := 0
-	rand.Seed(time.Now().UnixNano())
 	if len(numberRange) > 1 {
 		nr = 1
 		nr = seedAndReturnRandom(numberRange[1]-numberRange[0]) + numberRange[0]
@@ -209,7 +216,6 @@ func Number(numberRange ...int) int {
 
 func Decimal(numberRange ...int) float64 {
 	nr := 0.0
-	rand.Seed(time.Now().UnixNano())
 	if len(numberRange) > 1 {
 		nr = 1.0
 		nr = seedAndReturnRandomFloat()*(float64(numberRange[1])-float64(numberRange[0])) + float64(numberRange[0])
