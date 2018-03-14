@@ -422,3 +422,11 @@ func findInSlice(source []string, toFind string) bool {
 	}
 	return false
 }
+
+func TestPhoneNumbers(t *testing.T) {
+	str := PhoneNumber()
+
+	if (len(str) - strings.Count(str, " ")) > 16 {
+		t.Error("phone number too long")
+	}
+}
