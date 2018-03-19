@@ -429,4 +429,14 @@ func TestPhoneNumbers(t *testing.T) {
 	if (len(str) - strings.Count(str, " ")) > 16 {
 		t.Error("phone number too long")
 	}
+
+	matched, err := regexp.MatchString("\\+\\d{1,3}\\s\\d{1,3}", str)
+
+	if err != nil {
+		t.Errorf("error matching %v", err)
+	}
+
+	if !matched {
+		t.Error("phone number did not match expectations")
+	}
 }
