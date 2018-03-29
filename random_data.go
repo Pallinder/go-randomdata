@@ -56,9 +56,9 @@ type jsonContent struct {
 	Months              []string `json:"months"`
 	FemaleTitles        []string `json:"femaleTitles"`
 	MaleTitles          []string `json:"maleTitles"`
-	Timezones           []string `json:"timezones"`    // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-	UserAgents          []string `json:"userAgents"`   // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
-	CallingCodes        []string `json:"callingCodes"` // from https://github.com/datasets/country-codes/blob/master/data/country-codes.csv
+	Timezones           []string `json:"timezones"`           // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	UserAgents          []string `json:"userAgents"`          // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
+	CountryCallingCodes []string `json:"countryCallingCodes"` // from https://github.com/datasets/country-codes/blob/master/data/country-codes.csv
 }
 
 var jsonData = jsonContent{}
@@ -377,7 +377,7 @@ func UserAgentString() string {
 }
 
 func PhoneNumber() string {
-	str := randomFrom(jsonData.CallingCodes) + " "
+	str := randomFrom(jsonData.CountryCallingCodes) + " "
 
 	str += Digits(rand.Intn(3) + 1)
 
