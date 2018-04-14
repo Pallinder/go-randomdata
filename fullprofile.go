@@ -121,7 +121,7 @@ func GenerateProfile(gender int) *Profile {
 	profile.Location.City = City()
 	i, _ := strconv.Atoi(PostalCode("US"))
 	profile.Location.Postcode = i
-	profile.Location.State = State(2)
+	profile.Location.State = State(Small)
 	profile.Location.Street = StringNumber(1, "") + " " + Street()
 
 	profile.Login.Username = SillyName()
