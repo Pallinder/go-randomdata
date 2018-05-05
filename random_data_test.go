@@ -9,7 +9,24 @@ import (
 	"strings"
 	"testing"
 	"time"
+	"math/rand"
 )
+
+func TestCustomRand(t *testing.T) {
+	t.Log("TestCustomRand")
+	r1 := rand.New(rand.NewSource(1))
+	r2 := rand.New(rand.NewSource(1))
+
+	CustomRand(r1)
+	s1 := RandStringRunes(10)
+
+	CustomRand(r2)
+	s2 := RandStringRunes(10)
+
+	if s1 != s2 {
+		t.Fatal("Strings should have matched")
+	}
+}
 
 func TestRandomStringDigits(t *testing.T) {
 	t.Log("TestRandomStringDigits")

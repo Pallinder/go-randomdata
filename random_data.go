@@ -70,6 +70,10 @@ func init() {
 	}
 }
 
+func CustomRand(rand *rand.Rand)  {
+	r = rand
+}
+
 // Returns a random part of a slice
 func randomFrom(source []string) string {
 	return source[r.Intn(len(source))]
