@@ -36,11 +36,6 @@ const (
 )
 
 type jsonContent struct {
-	Adjectives          []string `json:"adjectives"`
-	Nouns               []string `json:"nouns"`
-	FirstNamesFemale    []string `json:"firstNamesFemale"`
-	FirstNamesMale      []string `json:"firstNamesMale"`
-	LastNames           []string `json:"lastNames"`
 	Domains             []string `json:"domains"`
 	People              []string `json:"people"`
 	StreetTypes         []string `json:"streetTypes"` // Taken from https://github.com/tomharris/random_data/blob/master/lib/random_data/locations.rb
@@ -102,10 +97,10 @@ func FirstName(gender int) string {
 	var name = ""
 	switch gender {
 	case Male:
-		name = randomFrom(jsonData.FirstNamesMale)
+		name = randomFrom(firstNamesMale)
 		break
 	case Female:
-		name = randomFrom(jsonData.FirstNamesFemale)
+		name = randomFrom(firstNamesFemale)
 		break
 	default:
 		name = FirstName(rand.Intn(2))
@@ -116,7 +111,7 @@ func FirstName(gender int) string {
 
 // LastName returns a random last name
 func LastName() string {
-	return randomFrom(jsonData.LastNames)
+	return randomFrom(lastNames)
 }
 
 // FullName returns a combination of FirstName LastName randomized, gender decides the gender of the name
@@ -250,12 +245,12 @@ func Boolean() bool {
 
 // Noun returns a random noun
 func Noun() string {
-	return randomFrom(jsonData.Nouns)
+	return randomFrom(nouns)
 }
 
 // Adjective returns a random adjective
 func Adjective() string {
-	return randomFrom(jsonData.Adjectives)
+	return randomFrom(adjectives)
 }
 
 func uppercaseFirstLetter(word string) string {

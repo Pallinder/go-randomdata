@@ -37,11 +37,11 @@ func TestFirstName(t *testing.T) {
 	firstNameFemale := FirstName(Female)
 	randomName := FirstName(RandomGender)
 
-	if !findInSlice(jsonData.FirstNamesMale, firstNameMale) {
+	if !findInSlice(firstNamesMale, firstNameMale) {
 		t.Error("firstNameMale empty or not in male names")
 	}
 
-	if !findInSlice(jsonData.FirstNamesFemale, firstNameFemale) {
+	if !findInSlice(firstNamesFemale, firstNameFemale) {
 		t.Error("firstNameFemale empty or not in female names")
 	}
 
@@ -55,7 +55,7 @@ func TestLastName(t *testing.T) {
 	t.Log("TestLastName")
 	lastName := LastName()
 
-	if !findInSlice(jsonData.LastNames, lastName) {
+	if !findInSlice(lastNames, lastName) {
 		t.Error("lastName empty or not in slice")
 	}
 }
@@ -75,11 +75,11 @@ func TestFullName(t *testing.T) {
 		t.Error("Failed on full name male")
 	}
 
-	if !findInSlice(jsonData.FirstNamesMale, maleSplit[0]) {
+	if !findInSlice(firstNamesMale, maleSplit[0]) {
 		t.Error("Couldnt find maleSplit first name in firstNamesMale")
 	}
 
-	if !findInSlice(jsonData.LastNames, maleSplit[1]) {
+	if !findInSlice(lastNames, maleSplit[1]) {
 		t.Error("Couldnt find maleSplit last name in lastNames")
 	}
 
@@ -87,11 +87,11 @@ func TestFullName(t *testing.T) {
 		t.Error("Failed on full name female")
 	}
 
-	if !findInSlice(jsonData.FirstNamesFemale, femaleSplit[0]) {
+	if !findInSlice(firstNamesFemale, femaleSplit[0]) {
 		t.Error("Couldnt find femaleSplit first name in firstNamesFemale")
 	}
 
-	if !findInSlice(jsonData.LastNames, femaleSplit[1]) {
+	if !findInSlice(lastNames, femaleSplit[1]) {
 		t.Error("Couldnt find femaleSplit last name in lastNames")
 	}
 
@@ -99,7 +99,7 @@ func TestFullName(t *testing.T) {
 		t.Error("Failed on full name random")
 	}
 
-	if !findInSlice(jsonData.FirstNamesMale, randomSplit[0]) && !findInSlice(jsonData.FirstNamesFemale, randomSplit[0]) {
+	if !findInSlice(firstNamesMale, randomSplit[0]) && !findInSlice(firstNamesFemale, randomSplit[0]) {
 		t.Error("Couldnt find randomSplit first name in either firstNamesMale or firstNamesFemale")
 	}
 
@@ -187,25 +187,25 @@ func TestState(t *testing.T) {
 }
 
 func TestNoun(t *testing.T) {
-	if len(jsonData.Nouns) == 0 {
+	if len(nouns) == 0 {
 		t.Error("Nouns is empty")
 	}
 
 	noun := Noun()
 
-	if !findInSlice(jsonData.Nouns, noun) {
+	if !findInSlice(nouns, noun) {
 		t.Error("Couldnt find noun in json data")
 	}
 }
 
 func TestAdjective(t *testing.T) {
-	if len(jsonData.Adjectives) == 0 {
+	if len(adjectives) == 0 {
 		t.Error("Adjectives array is empty")
 	}
 
 	adjective := Adjective()
 
-	if !findInSlice(jsonData.Adjectives, adjective) {
+	if !findInSlice(adjectives, adjective) {
 		t.Error("Couldnt find noun in json data")
 	}
 }
