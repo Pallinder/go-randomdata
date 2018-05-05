@@ -8,7 +8,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"math/rand"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -27,7 +26,7 @@ type Profile struct {
 		Street   string `json:"street"`
 		City     string `json:"city"`
 		State    string `json:"state"`
-		Postcode int    `json:"postcode"`
+		Postcode string `json:"postcode"`
 	} `json:"location"`
 
 	Email string `json:"email"`
@@ -119,9 +118,8 @@ func GenerateProfile(gender int) *Profile {
 	profile.Nat = "US"
 
 	profile.Location.City = City()
-	i, _ := strconv.Atoi(PostalCode("US"))
-	profile.Location.Postcode = i
-	profile.Location.State = State(2)
+	profile.Location.Postcode = PostalCode("US")
+	profile.Location.State = State(Small)
 	profile.Location.Street = StringNumber(1, "") + " " + Street()
 
 	profile.Login.Username = SillyName()

@@ -39,6 +39,10 @@ func Test_FullProfileGenerator(t *testing.T) {
 		t.Fatal("Profile Street failed to generate")
 	}
 
+	if len(profile.Location.State) != 2 {
+		t.Fatalf("Profile State code should be 2-character, but got %s\n", profile.Location.State)
+	}
+	
 	if profile.ID.Name != "SSN" {
 		t.Fatalf("Profile ID Name to be SSN, but got %s\n", profile.ID.Name)
 	}
