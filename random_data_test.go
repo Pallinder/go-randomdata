@@ -2,6 +2,7 @@ package randomdata
 
 import (
 	"bytes"
+	"math/rand"
 	"net"
 	"reflect"
 	"regexp"
@@ -9,7 +10,6 @@ import (
 	"strings"
 	"testing"
 	"time"
-	"math/rand"
 )
 
 func TestCustomRand(t *testing.T) {

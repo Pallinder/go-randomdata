@@ -70,7 +70,7 @@ func PostalCode(countrycode string) string {
 
 	case "FI":
 		// Last digit is usually 0 but can, in some cases, be 1 or 5.
-		switch r.Intn(2) {
+		switch privateRand.Intn(2) {
 		case 0:
 			return Digits(4) + "0"
 		case 1:
@@ -211,7 +211,7 @@ func Letters(letters int) string {
 	list := make([]byte, letters)
 
 	for i := range list {
-		list[i] = byte(r.Intn('Z'-'A') + 'A')
+		list[i] = byte(privateRand.Intn('Z'-'A') + 'A')
 	}
 
 	return string(list)
@@ -220,7 +220,7 @@ func Letters(letters int) string {
 // Digits generates a string of N random digits, padded with zeros if necessary.
 func Digits(digits int) string {
 	max := int(math.Pow10(digits)) - 1
-	num := r.Intn(max)
+	num := privateRand.Intn(max)
 	format := fmt.Sprintf("%%0%dd", digits)
 	return fmt.Sprintf(format, num)
 }
@@ -237,7 +237,7 @@ func BoundedDigits(digits, low, high int) string {
 		high = max
 	}
 
-	num := r.Intn(high-low+1) + low
+	num := privateRand.Intn(high-low+1) + low
 	format := fmt.Sprintf("%%0%dd", digits)
 	return fmt.Sprintf(format, num)
 }

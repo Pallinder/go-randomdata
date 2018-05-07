@@ -59,7 +59,7 @@ type Profile struct {
 func RandStringRunes(n int) string {
 	b := make([]rune, n)
 	for i := range b {
-		b[i] = letterRunes[r.Intn(len(letterRunes))]
+		b[i] = letterRunes[privateRand.Intn(len(letterRunes))]
 	}
 	return string(b)
 }
@@ -85,13 +85,13 @@ func getSha256(text string) string {
 }
 
 func GenerateProfile(gender int) *Profile {
-		profile := &Profile{}
+	profile := &Profile{}
 	if gender == Male {
 		profile.Gender = "male"
 	} else if gender == Female {
 		profile.Gender = "female"
 	} else {
-		gender = r.Intn(2)
+		gender = privateRand.Intn(2)
 		if gender == Male {
 			profile.Gender = "male"
 		} else {
@@ -130,7 +130,7 @@ func GenerateProfile(gender int) *Profile {
 	profile.Login.Sha1 = getSha1(pass + salt)
 	profile.Login.Sha256 = getSha256(pass + salt)
 
-	pic := r.Intn(35)
+	pic := privateRand.Intn(35)
 	profile.Picture.Large = fmt.Sprintf("https://randomuser.me/api/portraits/%s/%d.jpg", portraitDirs[gender], pic)
 	profile.Picture.Medium = fmt.Sprintf("https://randomuser.me/api/portraits/med/%s/%d.jpg", portraitDirs[gender], pic)
 	profile.Picture.Thumbnail = fmt.Sprintf("https://randomuser.me/api/portraits/thumb/%s/%d.jpg", portraitDirs[gender], pic)
