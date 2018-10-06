@@ -464,3 +464,43 @@ func CheckPhoneNumber(str string, t *testing.T) bool {
 
 	return true
 }
+
+func TestProvinceForCountry(t *testing.T) {
+	supportedCountries := []string{"US", "GB"}
+	for _, c := range supportedCountries {
+		p := ProvinceForCountry(c)
+		if p == "" {
+			t.Errorf("did not return a valid province for country %s", c)
+		}
+		switch c {
+		case "US":
+			if !findInSlice(jsonData.States, p) {
+				t.Errorf("did not return a known province for US")
+			}
+		case "GB":
+			if !findInSlice(jsonData.ProvincesGB, p) {
+				t.Errorf("did not return a known province for GB")
+			}
+		}
+	}
+
+	p := ProvinceForCountry("bogus")
+	if p != "" {
+		t.Errorf("did not return empty province for unknown country")
+	}
+}
+
+func TestStreetForCountry(t *testing.T) {
+	supportedCountries := []string{"US", "GB"}
+	for _, c := range supportedCountries {
+		p := StreetForCountry(c)
+		if p == "" {
+			t.Errorf("did not return a valid street for country %s", c)
+		}
+	}
+
+	p := StreetForCountry("bogus")
+	if p != "" {
+		t.Errorf("did not return empty street for unknown country")
+	}
+}

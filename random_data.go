@@ -59,6 +59,9 @@ type jsonContent struct {
 	Timezones           []string `json:"timezones"`           // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 	UserAgents          []string `json:"userAgents"`          // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
 	CountryCallingCodes []string `json:"countryCallingCodes"` // from https://github.com/datasets/country-codes/blob/master/data/country-codes.csv
+	ProvincesGB         []string `json:"provincesGB"`
+	StreetNameGB        []string `json:"streetNameGB"`
+	StreetTypesGB       []string `json:"streetTypesGB"`
 }
 
 var jsonData = jsonContent{}
@@ -165,6 +168,18 @@ func City() string {
 	return randomFrom(jsonData.Cities)
 }
 
+// ProvinceForCountry returns a randomly selected province (state, county,subdivision ) name for a supplied country.
+// If the country is not supported it will return an empty string.
+func ProvinceForCountry(countrycode string) string {
+	switch countrycode {
+	case "US":
+		return randomFrom(jsonData.States)
+	case "GB":
+		return randomFrom(jsonData.ProvincesGB)
+	}
+	return ""
+}
+
 // State returns a random american state
 func State(typeOfState int) string {
 	if typeOfState == Small {
@@ -176,6 +191,18 @@ func State(typeOfState int) string {
 // Street returns a random fake street name
 func Street() string {
 	return fmt.Sprintf("%s %s", randomFrom(jsonData.People), randomFrom(jsonData.StreetTypes))
+}
+
+// StreetForCountry returns a random fake street name typical to the supplied country.
+// If the country is not supported it will return an empty string.
+func StreetForCountry(countrycode string) string {
+	switch countrycode {
+	case "US":
+		return Street()
+	case "GB":
+		return fmt.Sprintf("%s %s", randomFrom(jsonData.StreetNameGB), randomFrom(jsonData.StreetTypesGB))
+	}
+	return ""
 }
 
 // Address returns an american style address
