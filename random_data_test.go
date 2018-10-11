@@ -418,6 +418,29 @@ func TestTimezone(t *testing.T) {
 	}
 }
 
+func TestLocale(t *testing.T) {
+	t.Log("TestLocale")
+	locale := Locale()
+
+	re := regexp.MustCompile("[a-z]{2}_[A-Z]{2}")
+
+	if !re.MatchString(locale) {
+		t.Errorf("Invalid locale: %v", locale)
+	}
+}
+
+func TestLocalePenetration(t *testing.T) {
+	t.Log("TestLocale")
+	re := regexp.MustCompile("[a-z]{2}_[A-Z]{2}")
+
+	for i := 0; i < 10000; i += 1 {
+		locale := Locale()
+		if !re.MatchString(locale) {
+			t.Errorf("Invalid locale: %v", locale)
+		}
+	}
+}
+
 func TestUserAgentString(t *testing.T) {
 	t.Log("UserAgentString")
 
