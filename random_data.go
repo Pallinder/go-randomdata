@@ -57,7 +57,7 @@ type jsonContent struct {
 	FemaleTitles        []string `json:"femaleTitles"`
 	MaleTitles          []string `json:"maleTitles"`
 	Timezones           []string `json:"timezones"`           // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-	Locales             []string `json:"locales"`             // http://userguide.icu-project.org/locale
+	Locales             []string `json:"locales"`             // https://tools.ietf.org/html/bcp47
 	UserAgents          []string `json:"userAgents"`          // http://techpatterns.com/downloads/firefox/useragentswitcher.xml
 	CountryCallingCodes []string `json:"countryCallingCodes"` // from https://github.com/datasets/country-codes/blob/master/data/country-codes.csv
 }

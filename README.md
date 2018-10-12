@@ -11,6 +11,7 @@ randomdata is a tiny help suite for generating random data such as
 * last names
 * full names (male or female)
 * country names (full name or iso 3166.1 alpha-2 or alpha-3)
+* locales / language tags (bcp-47)
 * random email address
 * city names
 * American state names (two chars or full)
@@ -84,6 +85,9 @@ func main() {
 
     // Print a country using ISO 3166-1 alpha-3
     fmt.Println(randomdata.Country(randomdata.ThreeCharCountry))
+    
+    // Print BCP 47 language tag
+    fmt.Println(randomdata.Locale())
 
     // Print a currency using ISO 4217
     fmt.Println(randomdata.Currency())
