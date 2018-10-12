@@ -401,6 +401,11 @@ func UserAgentString() string {
 	return randomFrom(jsonData.UserAgents)
 }
 
+// Domain returns a random domain from json
+func Domain() string {
+	return randomFrom(jsonData.Domains)
+}
+
 func PhoneNumber() string {
 	str := randomFrom(jsonData.CountryCallingCodes) + " "
 

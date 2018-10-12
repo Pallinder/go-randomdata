@@ -25,6 +25,9 @@ func ExampleRandomdata() {
 	// Print a random email
 	fmt.Println(Email())
 
+	// Print a random domain
+	fmt.Println(Domain())
+
 	// Print a country with full text representation
 	fmt.Println(Country(FullCountry))
 

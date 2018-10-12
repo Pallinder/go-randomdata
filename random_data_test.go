@@ -124,6 +124,15 @@ func TestFullName(t *testing.T) {
 
 }
 
+func TestDomain(t *testing.T) {
+	t.Log("TestDomain")
+	domain := Domain()
+
+	if domain == "" {
+		t.Error("Failed to generate domain with content")
+	}
+}
+
 func TestEmail(t *testing.T) {
 	t.Log("TestEmail")
 	email := Email()
