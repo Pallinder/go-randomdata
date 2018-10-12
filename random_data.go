@@ -326,7 +326,7 @@ func FullDate() string {
 	timestamp := time.Now()
 	year := timestamp.Year()
 	month := Number(1, 13)
-	maxDay := time.Date(year, time.Month(month), 1, 0, 0, 0, 0, time.UTC).AddDate(0, 1, -1).Day()
+	maxDay := time.Date(year, time.Month(month+1), 0, 0, 0, 0, 0, time.UTC).Day()
 	day := Number(1, maxDay+1)
 	date := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
 	return date.Format(DateOutputLayout)
