@@ -86,34 +86,28 @@ func randomFrom(source []string) string {
 
 // Title returns a random title, gender decides the gender of the name
 func Title(gender int) string {
-	var title = ""
+	var title string
 	switch gender {
 	case Male:
 		title = randomFrom(jsonData.MaleTitles)
-		break
 	case Female:
 		title = randomFrom(jsonData.FemaleTitles)
-		break
 	default:
 		title = FirstName(privateRand.Intn(2))
-		break
 	}
 	return title
 }
 
 // FirstName returns a random first name, gender decides the gender of the name
 func FirstName(gender int) string {
-	var name = ""
+	var name string
 	switch gender {
 	case Male:
 		name = randomFrom(jsonData.FirstNamesMale)
-		break
 	case Female:
 		name = randomFrom(jsonData.FirstNamesFemale)
-		break
 	default:
 		name = FirstName(rand.Intn(2))
-		break
 	}
 	return name
 }
@@ -135,22 +129,14 @@ func Email() string {
 
 // Country returns a random country, countryStyle decides what kind of format the returned country will have
 func Country(countryStyle int64) string {
-	country := ""
+	var country string
 	switch countryStyle {
-
-	default:
-
 	case FullCountry:
 		country = randomFrom(jsonData.Countries)
-		break
-
 	case TwoCharCountry:
 		country = randomFrom(jsonData.CountriesTwoChars)
-		break
-
 	case ThreeCharCountry:
 		country = randomFrom(jsonData.CountriesThreeChars)
-		break
 	}
 	return country
 }
@@ -193,7 +179,6 @@ func Paragraph() string {
 func Number(numberRange ...int) int {
 	nr := 0
 	if len(numberRange) > 1 {
-		nr = 1
 		nr = privateRand.Intn(numberRange[1]-numberRange[0]) + numberRange[0]
 	} else {
 		nr = privateRand.Intn(numberRange[0])
@@ -204,7 +189,6 @@ func Number(numberRange ...int) int {
 func Decimal(numberRange ...int) float64 {
 	nr := 0.0
 	if len(numberRange) > 1 {
-		nr = 1.0
 		nr = privateRand.Float64()*(float64(numberRange[1])-float64(numberRange[0])) + float64(numberRange[0])
 	} else {
 		nr = privateRand.Float64() * float64(numberRange[0])
@@ -265,12 +249,6 @@ func Adjective() string {
 func uppercaseFirstLetter(word string) string {
 	a := []rune(word)
 	a[0] = unicode.ToUpper(a[0])
-	return string(a)
-}
-
-func lowercaseFirstLetter(word string) string {
-	a := []rune(word)
-	a[0] = unicode.ToLower(a[0])
 	return string(a)
 }
 

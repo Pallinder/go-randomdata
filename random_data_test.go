@@ -1,7 +1,6 @@
 package randomdata
 
 import (
-	"bytes"
 	"math/rand"
 	"net"
 	"reflect"
@@ -183,7 +182,8 @@ func TestParagraph(t *testing.T) {
 func TestBool(t *testing.T) {
 	t.Log("TestBool")
 	booleanVal := Boolean()
-	if booleanVal != true && booleanVal != false {
+
+	if booleanVal && !booleanVal {
 		t.Error("Bool was wrong format")
 	}
 }
@@ -200,7 +200,6 @@ func TestState(t *testing.T) {
 	if !findInSlice(jsonData.States, stateValLarge) {
 		t.Error("Couldnt find state name in states")
 	}
-
 }
 
 func TestNoun(t *testing.T) {
@@ -264,7 +263,7 @@ func TestIpV6Address(t *testing.T) {
 		t.Errorf("Invalid generated IPv6 address %v", ipAddress)
 	}
 	roundTripIP := net.ParseIP(ipAddress.String())
-	if roundTripIP == nil || !bytes.Equal(ipAddress, roundTripIP) {
+	if roundTripIP == nil || !ipAddress.Equal(roundTripIP) {
 		t.Errorf("Invalid generated IPv6 address %v", ipAddress)
 	}
 }
