@@ -171,6 +171,11 @@ func main() {
 
 ```
 
+# Versioning / Release Strategy
+Go-Randomdata follows [Semver](https://www.semver.org)
+You can find current releases tagged under the releases section.
+The [CHANGELOG.md](CHANGELOG.md) file contains the changelog of the project.
+
 ## Contributors
 
 * [jteeuwen](https://github.com/jteeuwen)
