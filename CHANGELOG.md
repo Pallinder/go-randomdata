@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2018-10-31
+
+### Added
+- Generate random locale strings
+- Country localised street names
+- Country localised provinces
+
+### Fixed
+- Generating dates will respect varying number of days in a month
+
 ## [1.0.0] - 2018-10-30
 
 ### Added
