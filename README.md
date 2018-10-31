@@ -167,6 +167,16 @@ func main() {
     // There are many fields in the profile to use check the Profile struct definition in fullprofile.go
     profile := randomdata.GenerateProfile(randomdata.Male | randomdata.Female | randomdata.RandomGender)
     fmt.Printf("The new profile's username is: %s and password (md5): %s\n", profile.Login.Username, profile.Login.Md5)
+
+    // Get a random country-localised street name for Great Britain
+    fmt.Println(randomdata.StreetForCountry("GB"))
+    // Get a random country-localised street name for USA
+    fmt.Println(randomdata.StreetForCountry("US"))
+
+    // Get a random country-localised province for Great Britain
+    fmt.Println(randomdata.ProvinceForCountry("GB"))
+    // Get a random country-localised province for USA
+    fmt.Println(randomdata.ProvinceForCountry("US"))
 }
 
 ```
