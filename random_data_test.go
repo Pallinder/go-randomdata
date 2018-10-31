@@ -10,6 +10,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"golang.org/x/text/language"
 )
 
 func TestCustomRand(t *testing.T) {
@@ -358,7 +360,7 @@ func TestFullDateInRangeNoArgs(t *testing.T) {
 func TestFullDateInRangeOneArg(t *testing.T) {
 	t.Log("TestFullDateInRangeOneArg")
 	maxDate, _ := time.Parse(DateInputLayout, "2016-12-31")
-	for i := 0; i < 100000; i++ {
+	for i := 0; i < 10000; i++ {
 		fullDate := FullDateInRange("2016-12-31")
 		d, err := time.Parse(DateOutputLayout, fullDate)
 
@@ -376,7 +378,7 @@ func TestFullDateInRangeTwoArgs(t *testing.T) {
 	t.Log("TestFullDateInRangeTwoArgs")
 	minDate, _ := time.Parse(DateInputLayout, "2016-01-01")
 	maxDate, _ := time.Parse(DateInputLayout, "2016-12-31")
-	for i := 0; i < 100000; i++ {
+	for i := 0; i < 10000; i++ {
 		fullDate := FullDateInRange("2016-01-01", "2016-12-31")
 		d, err := time.Parse(DateOutputLayout, fullDate)
 
@@ -415,6 +417,27 @@ func TestTimezone(t *testing.T) {
 
 	if !findInSlice(jsonData.Timezones, timezone) {
 		t.Errorf("Couldnt find timezone in timezones: %v", timezone)
+	}
+}
+
+func TestLocale(t *testing.T) {
+	t.Log("TestLocale")
+	locale := Locale()
+	_, err := language.Parse(locale)
+	if err != nil {
+		t.Errorf("Invalid locale: %v", locale)
+	}
+}
+
+func TestLocalePenetration(t *testing.T) {
+	t.Log("TestLocale")
+
+	for i := 0; i < 10000; i += 1 {
+		locale := Locale()
+		_, err := language.Parse(locale)
+		if err != nil {
+			t.Errorf("Invalid locale: %v", locale)
+		}
 	}
 }
 
