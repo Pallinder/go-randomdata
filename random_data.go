@@ -352,11 +352,12 @@ func Month() string {
 // FullDate returns full date
 func FullDate() string {
 	timestamp := time.Now()
-	day := Day()
-	month := Month()
 	year := timestamp.Year()
-	fullDate := day + " " + strconv.Itoa(Number(1, 30)) + " " + month[0:3] + " " + strconv.Itoa(year)
-	return fullDate
+	month := Number(1, 13)
+	maxDay := time.Date(year, time.Month(month+1), 0, 0, 0, 0, 0, time.UTC).Day()
+	day := Number(1, maxDay+1)
+	date := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
+	return date.Format(DateOutputLayout)
 }
 
 // FullDateInRange returns a date string within a given range, given in the format "2006-01-02".

@@ -342,11 +342,30 @@ func TestFullDate(t *testing.T) {
 	fulldateOne := FullDate()
 	fulldateTwo := FullDate()
 
-	if fulldateOne == fulldateTwo {
+	_, err := time.Parse(DateOutputLayout, fulldateOne)
+	if err != nil {
 		t.Error("Invalid random full date")
+	}
+
+	_, err = time.Parse(DateOutputLayout, fulldateTwo)
+	if err != nil {
+		t.Error("Invalid random full date")
+	}
+
+	if fulldateOne == fulldateTwo {
+		t.Error("Generated same full date twice in a row")
 	}
 }
 
+func TestFullDatePenetration(t *testing.T) {
+	for i := 0; i < 100000; i += 1 {
+		d := FullDate()
+		_, err := time.Parse(DateOutputLayout, d)
+		if err != nil {
+			t.Error("Invalid random full date")
+		}
+	}
+}
 func TestFullDateInRangeNoArgs(t *testing.T) {
 	t.Log("TestFullDateInRangeNoArgs")
 	fullDate := FullDateInRange()
