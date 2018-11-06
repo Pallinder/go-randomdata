@@ -38,6 +38,7 @@ var postalcodeTests = []struct {
 	{"KR", 7},
 	{"TW", 5},
 	{"MH", 5},
+	{"GB", 7},
 }
 
 func TestPostalCode(t *testing.T) {

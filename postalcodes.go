@@ -163,8 +163,11 @@ func PostalCode(countrycode string) string {
 	case "FK", "TC":
 		return Letters(4) + Digits(1) + Letters(2)
 
-	case "GG", "IM", "JE", "GB":
+	case "GG", "IM", "JE":
 		return Letters(2) + Digits(2) + Letters(2)
+
+	case "GB":
+		return Letters(2) + Digits(1) + " " + Digits(1) + Letters(2)
 
 	case "KY":
 		return Letters(2) + Digits(1) + "-" + Digits(4)
