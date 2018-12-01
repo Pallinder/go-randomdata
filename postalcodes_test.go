@@ -1,6 +1,7 @@
 package randomdata
 
 import (
+	"regexp"
 	"testing"
 )
 
@@ -51,5 +52,26 @@ func TestPostalCode(t *testing.T) {
 
 		t.Fatalf("Invalid length for country %q: Expected %d, have %d.",
 			pt.Country, pt.Size, len(code))
+	}
+}
+
+func TestPostalCodeFormat(t *testing.T) {
+
+	for _, pt := range postalcodeTests {
+		code := PostalCode(pt.Country)
+
+		switch pt.Country {
+		case "GB":
+			matched, err := regexp.MatchString("^\\S{1,2}\\d{1,2} \\d\\S{1,2}", code)
+			if err != nil {
+				t.Errorf("error matching %v", err)
+			}
+
+			if !matched {
+				t.Fatalf("Invalid format for country %q",
+					pt.Country)
+			}
+
+		}
 	}
 }
