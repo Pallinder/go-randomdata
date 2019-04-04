@@ -98,7 +98,7 @@ func init() {
 }
 
 func CustomRand(randToUse *rand.Rand) {
-	privateRand = &pRand{randToUse, &sync.Mutex{}}
+	privateRand.pr = randToUse
 }
 
 // Returns a random part of a slice
