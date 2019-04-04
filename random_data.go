@@ -9,6 +9,7 @@ import (
 	"net"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 	"unicode"
 )
@@ -65,11 +66,28 @@ type jsonContent struct {
 	StreetTypesGB       []string `json:"streetTypesGB"`
 }
 
+type pRand struct {
+	pr *rand.Rand
+	mu *sync.Mutex
+}
+
+func (r *pRand) Intn(n int) int {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	return r.pr.Intn(n)
+}
+
+func (r *pRand) Float64() float64 {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	return r.pr.Float64()
+}
+
 var jsonData = jsonContent{}
-var privateRand *rand.Rand
+var privateRand *pRand
 
 func init() {
-	privateRand = rand.New(rand.NewSource(time.Now().UnixNano()))
+	privateRand = &pRand{rand.New(rand.NewSource(time.Now().UnixNano())), &sync.Mutex{}}
 	jsonData = jsonContent{}
 
 	err := json.Unmarshal(data, &jsonData)
@@ -80,7 +98,7 @@ func init() {
 }
 
 func CustomRand(randToUse *rand.Rand) {
-	privateRand = randToUse
+	privateRand = &pRand{randToUse, &sync.Mutex{}}
 }
 
 // Returns a random part of a slice
