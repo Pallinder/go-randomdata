@@ -35,6 +35,8 @@ const (
 	DateOutputLayout = "Monday 2 Jan 2006"
 )
 
+const ALPHANUMERIC = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
 type jsonContent struct {
 	Adjectives          []string `json:"adjectives"`
 	Nouns               []string `json:"nouns"`
@@ -273,6 +275,17 @@ func StringSample(stringList ...string) string {
 		str = stringList[Number(0, len(stringList))]
 	}
 	return str
+}
+
+// Alphanumeric returns a random alphanumeric string consits of [0-9a-zA-Z].
+func Alphanumeric(length int) string {
+	list := make([]byte, length)
+
+	for i := range list {
+		list[i] = ALPHANUMERIC[privateRand.Intn(len(ALPHANUMERIC))]
+	}
+
+	return string(list)
 }
 
 func Boolean() bool {
