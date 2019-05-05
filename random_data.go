@@ -90,19 +90,14 @@ func randomFrom(source []string) string {
 
 // Title returns a random title, gender decides the gender of the name
 func Title(gender int) string {
-	var title = ""
 	switch gender {
 	case Male:
-		title = randomFrom(jsonData.MaleTitles)
-		break
+		return randomFrom(jsonData.MaleTitles)
 	case Female:
-		title = randomFrom(jsonData.FemaleTitles)
-		break
+		return randomFrom(jsonData.FemaleTitles)
 	default:
-		title = FirstName(privateRand.Intn(2))
-		break
+		return Title(privateRand.Intn(2))
 	}
-	return title
 }
 
 // FirstName returns a random first name, gender decides the gender of the name
