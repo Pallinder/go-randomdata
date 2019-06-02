@@ -30,6 +30,28 @@ func TestCustomRand(t *testing.T) {
 	}
 }
 
+func TestTitle(t *testing.T) {
+	t.Log("TestTitle")
+	titleMale := Title(Male)
+	titleFemale := Title(Female)
+	randomTitle := Title(100)
+
+	if !findInSlice(jsonData.MaleTitles, titleMale) {
+		t.Error("titleMale empty or not in male titles")
+	}
+
+	if !findInSlice(jsonData.FemaleTitles, titleFemale) {
+		t.Error("firstNameFemale empty or not in female titles")
+	}
+
+	names := make([]string, len(jsonData.MaleTitles)+len(jsonData.FemaleTitles))
+	names = append(names, jsonData.MaleTitles...)
+	names = append(names, jsonData.FemaleTitles...)
+	if !findInSlice(names, randomTitle) {
+		t.Error("randomName empty or not in male and female titles")
+	}
+}
+
 func TestRandomStringDigits(t *testing.T) {
 	t.Log("TestRandomStringDigits")
 
