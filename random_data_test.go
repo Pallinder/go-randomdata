@@ -182,6 +182,18 @@ func TestParagraph(t *testing.T) {
 	}
 }
 
+func TestAlphanumeric(t *testing.T) {
+	t.Log("TestAlphanumeric")
+	alphanumric := Alphanumeric(10)
+	if len(alphanumric) != 10 {
+		t.Error("alphanumric has wrong size")
+	}
+	re := regexp.MustCompile(`^[[:alnum:]]+$`)
+	if !re.MatchString(alphanumric) {
+		t.Error("alphanumric contains invalid character")
+	}
+}
+
 func TestBool(t *testing.T) {
 	t.Log("TestBool")
 	booleanVal := Boolean()
