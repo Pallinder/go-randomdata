@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2019-06-02
+### Added
+- Spaces in postal code for GB.
+- Add functionality to randomly generate alphanumeric text.
+
+### Fixed
+- Fix race condition that was introduced by relying on privateRand.
+- Fix title with random gender not actually generating a title
+
 ## [1.1.0] - 2018-10-31
 
 ### Added
