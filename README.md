@@ -186,7 +186,7 @@ func main() {
 ```
 
 ## Versioning / Release Strategy
-Go-Randomdata follows [Semver](https://www.semver.org)
+Go-Randomdata follows [Semver](https://www.semver.org) and using [Go modules](https://github.com/golang/go/wiki/Modules)
 
 You can find current releases tagged under the [releases section](https://github.com/Pallinder/go-randomdata/releases).
 
