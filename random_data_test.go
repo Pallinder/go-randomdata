@@ -580,3 +580,19 @@ func TestStreetForCountry(t *testing.T) {
 		t.Errorf("did not return empty street for unknown country")
 	}
 }
+
+func TestLoremIpsumWords(t *testing.T) {
+	expectedLen := Number(5)
+	loremIpsumWords := strings.Split(LoremIpsumWords(expectedLen), " ")
+
+	if expectedLen != len(loremIpsumWords) {
+		t.Errorf("expected %d words, got %d insted: %s", expectedLen, len(loremIpsumWords), loremIpsumWords)
+	}
+
+	for _, w := range loremIpsumWords {
+		w = strings.ToLower(w)
+		if !findInSlice(jsonData.LoremIpsumWords, w) {
+			t.Errorf("%s is not in the lorem ipsum word list", w)
+		}
+	}
+}

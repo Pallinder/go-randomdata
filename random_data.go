@@ -66,6 +66,7 @@ type jsonContent struct {
 	ProvincesGB         []string `json:"provincesGB"`
 	StreetNameGB        []string `json:"streetNameGB"`
 	StreetTypesGB       []string `json:"streetTypesGB"`
+	LoremIpsumWords     []string `json:"loremIpsumWords"`
 }
 
 type pRand struct {
@@ -440,4 +441,18 @@ func PhoneNumber() string {
 		}
 		str += " " + Digits(privateRand.Intn(remaining-1)+1)
 	}
+}
+
+func LoremIpsumWords(length int) string {
+	if length <= 1 {
+		return randomFrom(jsonData.LoremIpsumWords)
+	}
+
+	// Needs to start with lorem
+	result := "Lorem"
+	for i := 0; i < length-1; i++ {
+		result += " " + randomFrom(jsonData.LoremIpsumWords)
+	}
+
+	return result
 }
