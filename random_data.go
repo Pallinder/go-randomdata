@@ -448,6 +448,7 @@ func LoremIpsumWords(length int) string {
 		return randomFrom(jsonData.LoremIpsumWords)
 	}
 
+	// Needs to start with lorem
 	result := "Lorem"
 	for i := 0; i < length-1; i++ {
 		result += " " + randomFrom(jsonData.LoremIpsumWords)
