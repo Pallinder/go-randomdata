@@ -27,6 +27,7 @@ randomdata is a tiny help suite for generating random data such as
 * random full profile
 * random date inside range
 * random phone number
+* random lorem ipsum words
 
 ## Installation
 
@@ -181,6 +182,9 @@ func main() {
     fmt.Println(randomdata.ProvinceForCountry("GB"))
     // Get a random country-localised province for USA
     fmt.Println(randomdata.ProvinceForCountry("US"))
+    
+    // Get 5 random lorem ipsum words
+    fmt.Println(randomdata.LoremIpsumWords(5))
 }
 
 ```
