@@ -670,7 +670,7 @@ var data = []byte(`{
         "prince",
         "princess",
         "duke",
-        "dutchess",
+        "duchess",
         "samurai",
         "ninja",
         "knave",
