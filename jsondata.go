@@ -674,7 +674,6 @@ var data = []byte(`{
         "samurai",
         "ninja",
         "knave",
-        "slave",
         "servant",
         "sage",
         "wizard",
