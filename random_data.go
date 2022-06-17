@@ -447,7 +447,6 @@ func PhoneNumber() string {
 
 	str := randCountryCode + " "
 
-	//str := randomFrom(jsonData.CountryCallingCodes) + " "
 	str += Digits(privateRand.Intn(3) + 1)
 
 	for {
