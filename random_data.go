@@ -430,8 +430,9 @@ func UserAgentString() string {
 func PhoneNumber() string {
 	randCountryCode := randomFrom(jsonData.CountryCallingCodes)
 
+	// The jsondata origin file https://github.com/datasets/country-codes/blob/master/data/country-codes.csv
+	// contains an empty space for the US territories. As a result, this hard codes it to 1
 	if randCountryCode == " " {
-		//fmt.Println("replaced space")
 		randCountryCode = "1"
 	}
 
@@ -439,7 +440,6 @@ func PhoneNumber() string {
 	// contains multiple country codes for the Dominican Republic, separated by commas. This addresses that unique
 	// edge case here instead of there as the JSON could be accidentally overwritten.
 	if strings.Contains(randCountryCode, ",") {
-		//fmt.Println("split commas")
 		possibleCountryCodes := strings.Split(randCountryCode, ",")
 		randIdx := privateRand.Intn(len(possibleCountryCodes))
 		randCountryCode = possibleCountryCodes[randIdx]
