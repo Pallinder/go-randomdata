@@ -329,7 +329,10 @@ func lowercaseFirstLetter(word string) string {
 }
 
 // SillyName returns a silly name, useful for randomizing naming of things
-func SillyName() string {
+func SillyName(upperCamelCase bool) string {
+	if upperCamelCase {
+		return uppercaseFirstLetter(Noun()) + uppercaseFirstLetter(Adjective())
+	}
 	return uppercaseFirstLetter(Noun()) + Adjective()
 }
 
